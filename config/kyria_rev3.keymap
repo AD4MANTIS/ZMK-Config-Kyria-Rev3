@@ -60,13 +60,11 @@
 &kp LGUI  &kp Z  &kp X  &kp C  &kp V      &kp B     &kp DEL    &none         &none     &mo 3        &kp N     &kp M      &kp COMMA  &kp DOT  &kp FSLH  &kp RCTRL
                         &none  &kp LCTRL  &kp LALT  &kp LSHFT  &lt 1 RET     &kp BSPC  &lt 2 SPACE  &kp RALT  &kp RCTRL  &none
             >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
-        // | 1 | 2 | 3 | 4 | 5 |    |  F9  |  F10  | F11 | F12  |  |
-        // | 6 | 7 | 8 | 9 | 0 |    | LEFT | RIGHT | UP  | DOWN |  |
-        // | F | 1 | - | F | 5 |    |      | HOME  | END |      |  |
+        // |  | 1 | 2 | 3 | 4 | 5 |    |  F9  |  F10  | F11 | F12  |  |  |
+        // |  | 6 | 7 | 8 | 9 | 0 |    | LEFT | RIGHT | UP  | DOWN |  |  |
+        // |  | F | 1 | - | F | 5 |    |      | HOME  | END |      |  |  |
         layer_Lower {
             bindings = <
 &trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                         &kp F9   &kp F10  &kp F11    &kp F12    &trans  &trans
@@ -76,9 +74,9 @@
             >;
         };
 
-        // | * | : | ; | ! | ? |    | { | } | ' | " | ` |
-        // | \ | / | + | - | = |    | ( | ) | < | > | _ |
-        // | ~ | ^ | & | | | % |    | [ | ] | @ | # | $ |
+        // |  | * | : | ; | ! | ? |    | { | } | ' | " | ` |  |
+        // |  | \ | / | + | - | = |    | ( | ) | < | > | _ |  |
+        // |  | ~ | ^ | & | | | % |    | [ | ] | @ | # | $ |  |
         layer_Symbol {
             bindings = <
 &none    &kp KP_MULTIPLY   &kp LS(DOT)  &kp LS(COMMA)               &kp LS(N1)  &kp LS(MINUS)                                     &kp LC(LA(N7))  &kp LC(LA(N0))     &kp LS(BSLH)           &kp LS(N2)    &GER_GRAVE   &none
@@ -90,13 +88,13 @@
 
         function_layer {
             // ---------------------------------------------------------------------------------------------------------------------------------
-            // |       |      |      |      |      |      |                                         |RGB_TOG|      |      |      |      |      |
-            // |       |      |      |      |      |      |                                         |       |      |      |      |      |      |
+            // |       |      |BT_CLR|BTSEL0|BTSEL1|BTSEL2|                                         |RGB_TOG|      |      |      |      |      |
+            // |       |      |      |BTSEL3|BTSEL4|      |                                         |       |      |      |      |      |      |
             // |       |      |      |      |      |      |      |      |      |      |      |      |       |      |      |      |      |      |
             //                       |      |      |      |      |      |      |      |      |      |       |      |      |
             bindings = <
-&trans  &trans  &bt BT_CLR  &trans        &trans        &trans                                        &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &trans  &trans
-&trans  &trans  &trans      &trans        &trans        &trans                                        &trans           &rgb_ug RGB_BRD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &trans  &trans
+&trans  &trans  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2                                  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &trans  &trans
+&trans  &trans  &trans      &bt BT_SEL 3  &bt BT_SEL 4  &trans                                        &trans           &rgb_ug RGB_BRD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &trans  &trans
 &trans  &trans  &trans      &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans           &trans           &trans           &trans           &trans  &trans
                             &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans           &trans           &trans
             >;
