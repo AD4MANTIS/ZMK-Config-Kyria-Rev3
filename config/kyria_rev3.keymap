@@ -87,16 +87,16 @@
                                                 &none                   &trans         &trans  &trans  &trans     &trans  &trans          &trans          &trans            &none
             >;
         };
+
         function_layer {
             // ---------------------------------------------------------------------------------------------------------------------------------
-            // |       |      |BT_CLR|BTSEL0|BTSEL1|BTSEL2|                                         |RGB_TOG|      |      |      |      |      |
-            // |       |      |      |BTSEL3|BTSEL4|      |                                         |       |      |      |      |      |      |
+            // |       |      |      |      |      |      |                                         |RGB_TOG|      |      |      |      |      |
+            // |       |      |      |      |      |      |                                         |       |      |      |      |      |      |
             // |       |      |      |      |      |      |      |      |      |      |      |      |       |      |      |      |      |      |
             //                       |      |      |      |      |      |      |      |      |      |       |      |      |
-
             bindings = <
-&trans  &trans  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2                                  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &trans  &trans
-&trans  &trans  &trans      &bt BT_SEL 3  &bt BT_SEL 4  &trans                                        &trans           &rgb_ug RGB_BRD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &trans  &trans
+&trans  &trans  &bt BT_CLR  &trans        &trans        &trans                                        &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &trans  &trans
+&trans  &trans  &trans      &trans        &trans        &trans                                        &trans           &rgb_ug RGB_BRD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &trans  &trans
 &trans  &trans  &trans      &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans           &trans           &trans           &trans           &trans  &trans
                             &trans        &trans        &trans        &trans  &trans  &trans  &trans  &trans           &trans           &trans
             >;
