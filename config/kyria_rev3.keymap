@@ -45,21 +45,85 @@
     };
 };
 
+
+// DIFFICULTY_THRESHOLD specifies your level of expertise with this keymap.
+// It's meant to help newcomers gradually work their way up to mastery.
+// You can disable this setting by omitting it or assigning a `0` zero.
+#define DIFFICULTY_THRESHOLD 200 // 500ms: easy -> 100ms: hard
+
+#if defined(DIFFICULTY_THRESHOLD) && DIFFICULTY_THRESHOLD > 0
+
+    #define HOMEY_HOLDING_TIME DIFFICULTY_THRESHOLD
+
+    #define INDEX_HOLDING_TIME DIFFICULTY_THRESHOLD
+
+    #define PINKEY_DIFFICULTY_OFFSET (DIFFICULTY_THRESHOLD / 8)
+
+    #define TAP_DANCE_TAPPING_TIME (DIFFICULTY_THRESHOLD - 25)
+
+#else
+
+    #define PINKEY_DIFFICULTY_OFFSET 0
+
+    #define TAP_DANCE_TAPPING_TIME 200
+
+#endif
+
+behaviors {
+
+    #define TAP_DANCE_TAPPING_TIME_O TAP_DANCE_TAPPING_TIME
+
+    #define TAP_DANCE_TAPPING_TIME_A (TAP_DANCE_TAPPING_TIME + PINKEY_DIFFICULTY_OFFSET)
+
+    #define TAP_DANCE_TAPPING_TIME_U TAP_DANCE_TAPPING_TIME
+
+    #define TAP_DANCE_TAPPING_TIME_SZ TAP_DANCE_TAPPING_TIME
+
+    o_oe: tap_dance_oe {
+        compatible = "zmk,behavior-tap-dance";
+        #binding-cells = <0>;
+        tapping-term-ms = <TAP_DANCE_TAPPING_TIME_O>;
+        bindings = <&kp O>, <&kp SEMI>;
+    };
+
+    a_ae: tap_dance_ae {
+        compatible = "zmk,behavior-tap-dance";
+        #binding-cells = <0>;
+        tapping-term-ms = <TAP_DANCE_TAPPING_TIME_A>;
+        bindings = <&kp A>, <&kp SQT>;
+    };
+
+    u_ue: tap_dance_ue {
+        compatible = "zmk,behavior-tap-dance";
+        #binding-cells = <0>;
+        tapping-term-ms = <TAP_DANCE_TAPPING_TIME_U>;
+        bindings = <&kp U>, <&kp LBKT>;
+    };
+
+    z_sz: tap_dance_sz {
+        compatible = "zmk,behavior-tap-dance";
+        #binding-cells = <0>;
+        tapping-term-ms = <TAP_DANCE_TAPPING_TIME_SZ>;
+        bindings = <&kp Y>, <&kp MINUS>;
+    };
+};
+};
+
 / {
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
-            // --------------------------------------------------------------------------------------------------------------------------------------------
-            // |  Tab  |  Q  |  W  |  E  |   R   |  T     |                                             |        Y        |  U   |  I  |  O  |  Ö  |   Ü  |
-            // |  ESC  |  A  |  S  |  D  |   F   |  G     |                                             |        H        |  J   |  K  |  L  |  P  |   Ä  |
-            // | LGUI  |  Z  |  X  |  C  |   V   |  B     |      DEL      |      |    |       | LAYER 3 |        N        |  M   |  ,  |  .  |  ;  | CTRL |
-            //                     |     | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    | RCTRL |  BSPC   | LAYER 2 / SPACE | LALT |     |
+            // -------------------------------------------------------------------------------------------------------------------------------------------
+            // |  Tab  |  Q  |  W  |  E  |   R   |  T     |                                            |        Y        |  U   |  I  |  O  |  Ö  |   Ü  |
+            // |  ESC  |  A  |  S  |  D  |   F   |  G     |                                            |        H        |  J   |  K  |  L  |  P  |   Ä  |
+            // | LGUI  |  Z  |  X  |  C  |   V   |  B     |      DEL      |      |    |      | LAYER 3 |        N        |  M   |  ,  |  .  |  ;  | CTRL |
+            //                     |     | LCTRL | LSHIFT | Layer 1 / RET | LALT |    | LGUI |  BSPC   | LAYER 2 / SPACE | LALT |     |
             bindings = <
-&kp TAB   &kp Q  &kp W  &kp E  &kp R      &kp T                                                   &kp Y        &kp U      &kp I      &kp O    &kp SEMI       &kp LBKT
-&kp ESC   &kp A  &kp S  &kp D  &kp F      &kp G                                                   &kp H        &kp J      &kp K      &kp L    &kp P          &kp SQT
-&kp E     &kp Z  &kp X  &kp C  &kp V      &kp B     &kp DEL    &none          &none     &mo 3     &kp N        &kp M      &kp COMMA  &kp DOT  &kp LS(COMMA)  &kp RCTRL
-                        &none  &kp LCTRL  &kp LSHFT &lt 1 RET  &kp LGUI       &kp RCTRL &kp BSPC  &lt 2 SPACE  &kp LALT   &none
+&kp TAB   &kp Q  &kp W  &kp E  &kp R      &kp T                                                  &z_sz        &u_ue      &kp I      &o_oe    &kp SEMI       &kp LBKT
+&kp ESC   &a_ae  &kp S  &kp D  &kp F      &kp G                                                  &kp H        &kp J      &kp K      &kp L    &kp P          &kp SQT
+&kp LGUI  &kp Z  &kp X  &kp C  &kp V      &kp B     &kp DEL    &none          &none    &mo 3     &kp N        &kp M      &kp COMMA  &kp DOT  &kp LS(COMMA)  &kp RCTRL
+                        &none  &kp LCTRL  &kp LSHFT &lt 1 RET  &kp LALT       &kp LGUI &kp BSPC  &lt 2 SPACE  &kp LALT   &none
             >;
         };
 
