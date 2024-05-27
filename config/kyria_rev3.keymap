@@ -69,44 +69,45 @@
 
 #endif
 
-behaviors {
+/ {
+    behaviors {
 
-    #define TAP_DANCE_TAPPING_TIME_O TAP_DANCE_TAPPING_TIME
+        #define TAP_DANCE_TAPPING_TIME_O TAP_DANCE_TAPPING_TIME
 
-    #define TAP_DANCE_TAPPING_TIME_A (TAP_DANCE_TAPPING_TIME + PINKEY_DIFFICULTY_OFFSET)
+        #define TAP_DANCE_TAPPING_TIME_A (TAP_DANCE_TAPPING_TIME + PINKEY_DIFFICULTY_OFFSET)
 
-    #define TAP_DANCE_TAPPING_TIME_U TAP_DANCE_TAPPING_TIME
+        #define TAP_DANCE_TAPPING_TIME_U TAP_DANCE_TAPPING_TIME
 
-    #define TAP_DANCE_TAPPING_TIME_SZ TAP_DANCE_TAPPING_TIME
+        #define TAP_DANCE_TAPPING_TIME_SZ TAP_DANCE_TAPPING_TIME
 
-    o_oe: tap_dance_oe {
-        compatible = "zmk,behavior-tap-dance";
-        #binding-cells = <0>;
-        tapping-term-ms = <TAP_DANCE_TAPPING_TIME_O>;
-        bindings = <&kp O>, <&kp SEMI>;
+        o_oe: tap_dance_oe {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TAP_DANCE_TAPPING_TIME_O>;
+            bindings = <&kp O>, <&kp SEMI>;
+        };
+
+        a_ae: tap_dance_ae {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TAP_DANCE_TAPPING_TIME_A>;
+            bindings = <&kp A>, <&kp SQT>;
+        };
+
+        u_ue: tap_dance_ue {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TAP_DANCE_TAPPING_TIME_U>;
+            bindings = <&kp U>, <&kp LBKT>;
+        };
+
+        z_sz: tap_dance_sz {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <TAP_DANCE_TAPPING_TIME_SZ>;
+            bindings = <&kp Y>, <&kp MINUS>;
+        };
     };
-
-    a_ae: tap_dance_ae {
-        compatible = "zmk,behavior-tap-dance";
-        #binding-cells = <0>;
-        tapping-term-ms = <TAP_DANCE_TAPPING_TIME_A>;
-        bindings = <&kp A>, <&kp SQT>;
-    };
-
-    u_ue: tap_dance_ue {
-        compatible = "zmk,behavior-tap-dance";
-        #binding-cells = <0>;
-        tapping-term-ms = <TAP_DANCE_TAPPING_TIME_U>;
-        bindings = <&kp U>, <&kp LBKT>;
-    };
-
-    z_sz: tap_dance_sz {
-        compatible = "zmk,behavior-tap-dance";
-        #binding-cells = <0>;
-        tapping-term-ms = <TAP_DANCE_TAPPING_TIME_SZ>;
-        bindings = <&kp Y>, <&kp MINUS>;
-    };
-};
 };
 
 / {
