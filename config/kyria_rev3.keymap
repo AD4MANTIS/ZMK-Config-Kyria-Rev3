@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: MIT
  */
 
- /*
-  * German QWERTZ Layout
-  */
+/*
+ * German QWERTZ Layout
+ */
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
@@ -19,32 +19,6 @@
     // chain-length = <31>; // Uncomment if using both per-key and underglow LEDs
     // chain-length = <25>; // Uncomment if using only per-key LEDs.
 };
-
-/ {
-    macros {
-        GER_CARET: GER_CARET {
-            label = "&GER_CARET";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            
-            
-            bindings
-                = <&kp GRAVE>
-                , <&kp SPACE>;
-        };
-    GER_GRAVE: GER_GRAVE {
-            label = "&GER_GRAVE";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            
-            
-            bindings
-                = <&kp LS(EQUAL)>
-                , <&kp SPACE>;
-        };
-    };
-};
-
 
 // DIFFICULTY_THRESHOLD specifies your level of expertise with this keymap.
 // It's meant to help newcomers gradually work their way up to mastery.
@@ -68,6 +42,32 @@
     #define TAP_DANCE_TAPPING_TIME 200
 
 #endif
+
+/ {
+    macros {
+        GER_CARET: GER_CARET {
+            label = "&GER_CARET";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            
+            
+            bindings
+                = <&kp GRAVE>
+                , <&kp SPACE>;
+        };
+
+        GER_GRAVE: GER_GRAVE {
+            label = "&GER_GRAVE";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            
+            
+            bindings
+                = <&kp LS(EQUAL)>
+                , <&kp SPACE>;
+        };
+    };
+};
 
 / {
     behaviors {
@@ -107,6 +107,13 @@
             tapping-term-ms = <TAP_DANCE_TAPPING_TIME_SZ>;
             bindings = <&kp Y>, <&kp MINUS>;
         };
+
+        sk_shft: sticky_key_shift {
+            compatible = "zmk,behavior-sticky-key";
+            #binding-cells = <1>;
+            bindings = <&kp>;
+            release-after-ms = <(TAP_DANCE_TAPPING_TIME + PINKEY_DIFFICULTY_OFFSET)>;
+        };
     };
 };
 
@@ -119,12 +126,12 @@
             // |  Tab  |  Q  |  W  |  E  |   R   |  T     |                                            |        Y        |  U   |  I  |  O  |  Ö  |   Ü  |
             // |  ESC  |  A  |  S  |  D  |   F   |  G     |                                            |        H        |  J   |  K  |  L  |  P  |   Ä  |
             // | LGUI  |  Z  |  X  |  C  |   V   |  B     |      DEL      |      |    |      | LAYER 3 |        N        |  M   |  ,  |  .  |  ;  | CTRL |
-            //                     |     | LCTRL | LSHIFT | Layer 1 / RET | LALT |    | LGUI |  BSPC   | LAYER 2 / SPACE | LALT |     |
+            //                     |     | LCTRL | LSHIFT | Layer 1 / RET | LALT |    | RGUI |  BSPC   | LAYER 2 / SPACE | LALT |     |
             bindings = <
 &kp TAB   &kp Q  &kp W  &kp E  &kp R      &kp T                                                  &z_sz        &u_ue      &kp I      &o_oe    &kp SEMI       &kp LBKT
 &kp ESC   &a_ae  &kp S  &kp D  &kp F      &kp G                                                  &kp H        &kp J      &kp K      &kp L    &kp P          &kp SQT
 &kp LGUI  &kp Z  &kp X  &kp C  &kp V      &kp B     &kp DEL    &none          &none    &mo 3     &kp N        &kp M      &kp COMMA  &kp DOT  &kp LS(COMMA)  &kp RCTRL
-                        &none  &kp LCTRL  &kp LSHFT &lt 1 RET  &kp LALT       &kp LGUI &kp BSPC  &lt 2 SPACE  &kp LALT   &none
+                        &none  &kp LCTRL  &sk_shft  &lt 1 RET  &kp LALT       &kp RGUI &kp BSPC  &lt 2 SPACE  &kp LALT   &none
             >;
         };
 
