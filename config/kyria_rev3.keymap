@@ -46,7 +46,6 @@
 / {
     macros {
         GER_CARET: GER_CARET {
-            label = "&GER_CARET";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             
@@ -57,7 +56,6 @@
         };
 
         GER_GRAVE: GER_GRAVE {
-            label = "&GER_GRAVE";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             
@@ -258,8 +256,8 @@
 
         sk_shft: sticky_key_shift {
             compatible = "zmk,behavior-sticky-key";
-            #binding-cells = <1>;
-            bindings = <&kp>;
+            #binding-cells = <0>;
+            bindings = <&kp LSHIFT>;
             release-after-ms = <(TAP_DANCE_TAPPING_TIME + PINKEY_DIFFICULTY_OFFSET)>;
         };
     };
