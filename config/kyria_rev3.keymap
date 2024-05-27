@@ -274,10 +274,10 @@
             // | LGUI  |  Z  |  X  |  C  |   V   |  B     |      DEL      |      |    |      | LAYER 3 |        N        |  M   |  ,  |  .  |  ;  | CTRL |
             //                     |     | LCTRL | LSHIFT | Layer 1 / RET | LALT |    | RGUI |  BSPC   | LAYER 2 / SPACE | LALT |     |
             bindings = <
-&kp TAB   &kp Q  &kp W              &kp E                &kp R      &kp T                                                  &z_sz        &u_ue                 &kp I               &o_oe    &kp SEMI       &kp LBKT
-&kp ESC   &a_ae  &left_ring LALT S  &left_middy LCTRL D  &kp F      &kp G                                                  &kp H        &right_middy RCTRL K  &right_ring RALT L  &kp L    &kp P          &kp SQT
-&kp LGUI  &kp Z  &kp X              &kp C                &kp V      &kp B            &kp DEL    &none          &none    &mo 3     &kp N        &kp M                 &kp COMMA           &kp DOT  &kp LS(COMMA)  &kp RCTRL
-                                    &none                &kp LCTRL  &sk_shft LSHIFT  &lt 1 RET  &kp LALT       &kp RGUI &kp BSPC  &lt 2 SPACE  &kp LALT              &none
+&kp TAB   &kp Q  &kp W              &kp E                &kp R      &kp T                                                         &z_sz        &u_ue     &kp I                 &o_oe               &kp SEMI       &kp LBKT
+&kp ESC   &a_ae  &left_ring LALT S  &left_middy LCTRL D  &kp F      &kp G                                                         &kp H        &kp J     &right_middy RCTRL K  &right_ring RALT L  &kp P          &kp SQT
+&kp LGUI  &kp Z  &kp X              &kp C                &kp V      &kp B            &kp DEL    &none          &none    &mo 3     &kp N        &kp M     &kp COMMA             &kp DOT             &kp LS(COMMA)  &kp RCTRL
+                                    &none                &kp LCTRL  &sk_shft LSHIFT  &lt 1 RET  &kp LALT       &kp RGUI &kp BSPC  &lt 2 SPACE  &kp LALT  &none
             >;
         };
 
