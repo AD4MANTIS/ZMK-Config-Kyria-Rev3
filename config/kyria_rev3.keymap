@@ -51,15 +51,15 @@
 
         default_layer {
             // --------------------------------------------------------------------------------------------------------------------------------------------
-            // |  ESC  |  Q  |  W  |  E  |   R   |  T   |                                                      |  Y   |  U    |  I  |  O   |   Ö   |   Ü  |
-            // |  TAB  |  A  |  S  |  D  |   F   |  G   |                                                      |  H   |  J    |  K  |  L   |   P   |   A  |
-            // | LGUI  |  Z  |  X  |  C  |   V   |  B   |   DEL    |               |  |      |     LAYER 3     |  N   |  M    |  ,  |  .   |   /   | CTRL |
-            //                     |     | LCTRL | LALT |  LSHIFT  | Layer 1 / RET |  | BSPC | LAYER 2 / SPACE | RALT | RCTRL |     |
+            // |  Tab  |  Q  |  W  |  E  |   R   |  T     |                                             |        Y        |  U   |  I  |  O  |  Ö  |   Ü  |
+            // |  ESC  |  A  |  S  |  D  |   F   |  G     |                                             |        H        |  J   |  K  |  L  |  P  |   Ä  |
+            // | LGUI  |  Z  |  X  |  C  |   V   |  B     |      DEL      |      |    |       | LAYER 3 |        N        |  M   |  ,  |  .  |  ;  | CTRL |
+            //                     |     | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    | RCTRL |  BSPC   | LAYER 2 / SPACE | LALT |     |
             bindings = <
-&kp ESC   &kp Q  &kp W  &kp E  &kp R      &kp T                                                     &kp Y     &kp U      &kp I      &kp O    &kp SEMI  &kp LBKT
-&kp TAB   &kp A  &kp S  &kp D  &kp F      &kp G                                                     &kp H     &kp J      &kp K      &kp L    &kp P     &kp SQT
-&kp LGUI  &kp Z  &kp X  &kp C  &kp V      &kp B     &kp DEL    &none         &none     &mo 3        &kp N     &kp M      &kp COMMA  &kp DOT  &kp FSLH  &kp RCTRL
-                        &none  &kp LCTRL  &kp LALT  &kp LSHFT  &lt 1 RET     &kp BSPC  &lt 2 SPACE  &kp RALT  &kp RCTRL  &none
+&kp TAB   &kp Q  &kp W  &kp E  &kp R      &kp T                                                   &kp Y        &kp U      &kp I      &kp O    &kp SEMI       &kp LBKT
+&kp ESC   &kp A  &kp S  &kp D  &kp F      &kp G                                                   &kp H        &kp J      &kp K      &kp L    &kp P          &kp SQT
+&kp E     &kp Z  &kp X  &kp C  &kp V      &kp B     &kp DEL    &none          &none     &mo 3     &kp N        &kp M      &kp COMMA  &kp DOT  &kp LS(COMMA)  &kp RCTRL
+                        &none  &kp LCTRL  &kp LSHFT &lt 1 RET  &kp LGUI       &kp RCTRL &kp BSPC  &lt 2 SPACE  &kp LALT   &none
             >;
         };
 
@@ -78,11 +78,11 @@
 
         layer_Symbol {
             // ----------------------------------------------------
-            // |  | * | : | ; | ! | ? |    | { | } | ' | " | ` |  |
+            // |  | * | : | ; | ! | ? |    | { | } | " | ' | ` |  |
             // |  | \ | / | + | - | = |    | ( | ) | < | > | _ |  |
             // |  | ~ | ^ | & | | | % |    | [ | ] | @ | # | $ |  |
             bindings = <
-&none    &kp KP_MULTIPLY   &kp LS(DOT)  &kp LS(COMMA)               &kp LS(N1)  &kp LS(MINUS)                                    &kp LC(LA(N7))  &kp LC(LA(N0))     &kp LS(BSLH)           &kp LS(N2)    &GER_GRAVE   &none
+&none    &kp KP_MULTIPLY   &kp LS(DOT)  &kp LS(COMMA)               &kp LS(N1)  &kp LS(MINUS)                                    &kp LC(LA(N7))  &kp LC(LA(N0))       &kp LS(N2)         &kp LS(BSLH)    &GER_GRAVE   &none
 &none  &kp LC(LA(MINUS))  &kp KP_SLASH       &kp RBKT                 &kp FSLH     &kp LS(N0)                                        &kp LS(N8)      &kp LS(N9)  &kp NON_US_BSLH  &kp LS(NON_US_BSLH)  &kp LS(FSLH)   &none
 &none   &kp LC(LA(RBKT))    &GER_CARET     &kp LS(N6)  &kp LC(LA(NON_US_BSLH))     &kp LS(N5)  &trans  &none     &none   &trans  &kp LC(LA(N8))  &kp LC(LA(N9))    &kp LC(LA(Q))             &kp BSLH    &kp LS(N4)   &none
                                                 &none                   &trans         &trans  &trans  &trans    &trans  &trans          &trans          &trans            &none
@@ -90,11 +90,11 @@
         };
 
         function_layer {
-            // ---------------------------------------------------------------------------------------------------------------------------------
-            // |       |      |BT_CLR|BTSEL0|BTSEL1|BTSEL2|                                         |RGB_TOG|      |      |      |      |      |
-            // |       |      |      |BTSEL3|BTSEL4|      |                                         |       |      |      |      |      |      |
-            // |       |      |      |      |      |      |      |      |      |      |      |      |       |      |      |      |      |      |
-            //                       |      |      |      |      |      |      |      |      |      |       |      |      |
+            // ------------------------------------------------------------------------------------------------------------------------------------
+            // |       |      |BT_CLR|BTSEL0|BTSEL1|BTSEL2|                                         |RGB_TOG|RGB_BRI|RGB_SAI|RGB_HUI|      |      |
+            // |       |      |      |BTSEL3|BTSEL4|      |                                         |       |RGB_BRD|RGB_SAD|RGB_HUD|      |      |
+            // |       |      |      |      |      |      |      |      |      |      |      |      |       |       |       |       |      |      |
+            //                       |      |      |      |      |      |      |      |      |      |       |       |       |
             bindings = <
 &trans  &trans  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2                                  &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &trans  &trans
 &trans  &trans  &trans      &bt BT_SEL 3  &bt BT_SEL 4  &trans                                        &trans           &rgb_ug RGB_BRD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &trans  &trans
