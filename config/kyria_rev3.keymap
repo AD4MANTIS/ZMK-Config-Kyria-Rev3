@@ -78,68 +78,34 @@
         //
         //////////////////////////////////////////////////////////////////////////
 
-        //
         // HOMEY_HOLDING_TYPE defines the flavor of ZMK hold-tap behavior to use
         // for the pinky, ring, and middle fingers (which are assigned to Super,
         // Alt, and Ctrl respectively in the Miryoku system) on home row keys.
-        //
-        #ifndef HOMEY_HOLDING_TYPE
         #define HOMEY_HOLDING_TYPE "tap-preferred"
-        #endif
 
-        //
         // HOMEY_HOLDING_TIME defines how long you need to hold (milliseconds)
         // home row mod keys in order to send their modifiers to the computer
         // (i.e. "register" them) for mod-click mouse usage (e.g. Ctrl-Click).
-        //
-        #ifndef HOMEY_HOLDING_TIME
         #define HOMEY_HOLDING_TIME 270 // TAPPING_TERM + ALLOW_CROSSOVER_AFTER
-        #endif
 
-        //
         // HOMEY_STREAK_DECAY defines how long you need to wait (milliseconds)
         // after typing before you can use home row mods again.  It prevents
         // unintended activation of home row mods when you're actively typing.
-        //
-        #ifndef HOMEY_STREAK_DECAY
         #define HOMEY_STREAK_DECAY 250
-        #endif
 
-        //
         // HOMEY_REPEAT_DECAY defines how much time you have left (milliseconds)
         // after tapping a key to hold it again in order to make it auto-repeat.
-        //
-        #ifndef HOMEY_REPEAT_DECAY
         #define HOMEY_REPEAT_DECAY 300 // "tap then hold" for key auto-repeat
-        #endif
 
-        //
         // Home row mods with per-finger configuration settings
-        //
-        #ifndef RING_HOLDING_TYPE
         #define RING_HOLDING_TYPE HOMEY_HOLDING_TYPE
-        #endif
-        #ifndef RING_HOLDING_TIME
         #define RING_HOLDING_TIME HOMEY_HOLDING_TIME
-        #endif
-        #ifndef RING_STREAK_DECAY
         #define RING_STREAK_DECAY HOMEY_STREAK_DECAY
-        #endif
-        #ifndef RING_REPEAT_DECAY
         #define RING_REPEAT_DECAY HOMEY_REPEAT_DECAY
-        #endif
-        #ifndef MIDDY_HOLDING_TYPE
         #define MIDDY_HOLDING_TYPE HOMEY_HOLDING_TYPE
-        #endif
-        #ifndef MIDDY_HOLDING_TIME
         #define MIDDY_HOLDING_TIME HOMEY_HOLDING_TIME
-        #endif
-        #ifndef MIDDY_STREAK_DECAY
         #define MIDDY_STREAK_DECAY HOMEY_STREAK_DECAY
-        #endif
-        #ifndef MIDDY_REPEAT_DECAY
         #define MIDDY_REPEAT_DECAY HOMEY_REPEAT_DECAY
-        #endif
 
         //
         // key positions index for positional hold-tap
@@ -269,15 +235,15 @@
 
         default_layer {
             // -------------------------------------------------------------------------------------------------------------------------------------------
-            // |  Tab  |  Q  |  W  |  E  |   R   |  T     |                                            |        Y        |  U   |  I  |  O  |  Ö  |   Ü  |
-            // |  ESC  |  A  |  S  |  D  |   F   |  G     |                                            |        H        |  J   |  K  |  L  |  P  |   Ä  |
-            // | LGUI  |  Z  |  X  |  C  |   V   |  B     |      DEL      |      |    |      | LAYER 3 |        N        |  M   |  ,  |  .  |  ;  | CTRL |
-            //                     |     | LCTRL | LSHIFT | Layer 1 / RET | LALT |    | RGUI |  BSPC   | LAYER 2 / SPACE | LALT |     |
+            // |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                            |        Y        |  U   |   I   |  O  |  Ö  |   Ü  |
+            // |  ESC  |  A  |  S  |  D   |   F   |   G    |                                            |        H        |  J   |   K   |  L  |  P  |   Ä  |
+            // | LGUI  |  Z  |  X  |  C   |   V   |   B    |      DEL      |      |    |      | LAYER 3 |        N        |  M   |   ,   |  .  |  ß  | CTRL |
+            //                     | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    | RGUI |  BSPC   | LAYER 2 / SPACE | LALT | RCTRL |
             bindings = <
-&kp TAB   &kp Q  &kp W              &kp E                &kp R      &kp T                                                         &z_sz        &u_ue     &kp I                 &o_oe               &kp SEMI       &kp LBKT
-&kp ESC   &a_ae  &left_ring LALT S  &left_middy LCTRL D  &kp F      &kp G                                                         &kp H        &kp J     &right_middy RCTRL K  &right_ring RALT L  &kp P          &kp SQT
-&kp LGUI  &kp Z  &kp X              &kp C                &kp V      &kp B            &kp DEL    &none          &none    &mo 3     &kp N        &kp M     &kp COMMA             &kp DOT             &kp LS(COMMA)  &kp RCTRL
-                                    &none                &kp LCTRL  &sk_shft LSHIFT  &lt 1 RET  &kp LALT       &kp RGUI &kp BSPC  &lt 2 SPACE  &kp LALT  &none
+&kp TAB   &kp Q  &kp W              &kp E                &kp R      &kp T                                                         &z_sz        &u_ue     &kp I                 &o_oe               &kp SEMI   &kp LBKT
+&kp ESC   &a_ae  &left_ring LALT S  &left_middy LCTRL D  &kp F      &kp G                                                         &kp H        &kp J     &right_middy RCTRL K  &right_ring RALT L  &kp P      &kp SQT
+&kp LGUI  &kp Z  &kp X              &kp C                &kp V      &kp B            &kp DEL    &none          &none    &mo 3     &kp N        &kp M     &kp COMMA             &kp DOT             &kp MINUS  &kp RCTRL
+                                    &kp LALT             &kp LCTRL  &sk_shft LSHIFT  &lt 1 RET  &kp LGUI       &kp RGUI &kp BSPC  &lt 2 SPACE  &kp LALT  &kp RCTRL 
             >;
         };
 
@@ -285,7 +251,7 @@
             // ---------------------------------------------------------------
             // |  | 1 | 2 | 3 | 4 | 5 |    |  F9  |  F10  | F11 | F12  |  |  |
             // |  | 6 | 7 | 8 | 9 | 0 |    | LEFT | RIGHT | UP  | DOWN |  |  |
-            // |  | F | 1 | - | F | 5 |    |      | HOME  | END |      |  |  |
+            // |  |      F1 - F5      |    |      | HOME  | END |      |  |  |
             bindings = <
 &trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                         &kp F9   &kp F10  &kp F11    &kp F12    &trans  &trans
 &trans  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0                                         &kp LEFT &kp DOWN &kp UP     &kp RIGHT  &trans  &trans
