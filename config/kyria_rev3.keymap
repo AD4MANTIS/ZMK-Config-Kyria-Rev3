@@ -180,46 +180,8 @@
     };
 };
 
-// Umlaute & sz
 / {
     behaviors {
-
-        #define TAP_DANCE_TAPPING_TIME_O TAP_DANCE_TAPPING_TIME
-
-        #define TAP_DANCE_TAPPING_TIME_A (TAP_DANCE_TAPPING_TIME + PINKEY_DIFFICULTY_OFFSET)
-
-        #define TAP_DANCE_TAPPING_TIME_U TAP_DANCE_TAPPING_TIME
-
-        #define TAP_DANCE_TAPPING_TIME_SZ TAP_DANCE_TAPPING_TIME
-
-        o_oe: tap_dance_oe {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAP_DANCE_TAPPING_TIME_O>;
-            bindings = <&kp O>, <&kp SEMI>;
-        };
-
-        a_ae: tap_dance_ae {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAP_DANCE_TAPPING_TIME_A>;
-            bindings = <&kp A>, <&kp SQT>;
-        };
-
-        u_ue: tap_dance_ue {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAP_DANCE_TAPPING_TIME_U>;
-            bindings = <&kp U>, <&kp LBKT>;
-        };
-
-        z_sz: tap_dance_sz {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAP_DANCE_TAPPING_TIME_SZ>;
-            bindings = <&kp Y>, <&kp MINUS>;
-        };
-
         sk_shft: sticky_key_shift {
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
@@ -240,12 +202,13 @@
             // | LGUI  |  Z  |  X  |  C   |   V   |   B    |      DEL      |      |    |      | LAYER 3 |        N        |  M   |   ,   |  .  |  ß  | CTRL |
             //                     | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    | RGUI |  BSPC   | LAYER 2 / SPACE | LALT | RCTRL |
             bindings = <
-&kp TAB   &kp Q  &kp W              &kp E                &kp R      &kp T                                                         &z_sz        &u_ue     &kp I                 &o_oe               &kp SEMI   &kp LBKT
-&kp ESC   &a_ae  &left_ring LALT S  &left_middy LCTRL D  &kp F      &kp G                                                         &kp H        &kp J     &right_middy RCTRL K  &right_ring RALT L  &kp P      &kp SQT
+&kp TAB   &kp Q  &kp W              &kp E                &kp R      &kp T                                                         &kp U        &kp U     &kp I                 &kp O               &kp SEMI   &kp LBKT
+&kp ESC   &kp A  &left_ring LALT S  &left_middy LCTRL D  &kp F      &kp G                                                         &kp H        &kp J     &right_middy RCTRL K  &right_ring RALT L  &kp P      &kp SQT
 &kp LGUI  &kp Z  &kp X              &kp C                &kp V      &kp B            &kp DEL    &none          &none    &mo 3     &kp N        &kp M     &kp COMMA             &kp DOT             &kp MINUS  &kp RCTRL
                                     &kp LALT             &kp LCTRL  &sk_shft LSHIFT  &lt 1 RET  &kp LGUI       &kp RGUI &kp BSPC  &lt 2 SPACE  &kp LALT  &kp RCTRL 
             >;
         };
+        
 
         layer_Lower {
             // ---------------------------------------------------------------
