@@ -186,7 +186,7 @@
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
             bindings = <&kp>;
-            release-after-ms = <(TAP_DANCE_TAPPING_TIME + PINKEY_DIFFICULTY_OFFSET)>;
+            release-after-ms = <TAP_DANCE_TAPPING_TIME>;
         };
     };
 };
@@ -197,18 +197,17 @@
 
         default_layer {
             // -------------------------------------------------------------------------------------------------------------------------------------------
-            // |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                            |        Z        |  U   |   I   |  O  |  Ö  |   Ü  |
-            // |  ESC  |  A  |  S  |  D   |   F   |   G    |                                            |        H        |  J   |   K   |  L  |  P  |   Ä  |
-            // | LGUI  |  Y  |  X  |  C   |   V   |   B    |      DEL      |      |    |      | LAYER 3 |        N        |  M   |   ,   |  .  |  ß  | CTRL |
-            //                     | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    | RGUI |  BSPC   | LAYER 2 / SPACE | LALT | RCTRL |
+            // |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                                    |        Z        |  U   |   I   |  O  |  Ö  |   Ü  |
+            // |  ESC  |  A  |  S  |  D   |   F   |   G    |                                                    |        H        |  J   |   K   |  L  |  P  |   Ä  |
+            // | LGUI  |  Y  |  X  |  C   |   V   |   B    |      DEL      |       |    |       | LAYER 3 / DEL |        N        |  M   |   ,   |  .  |  ß  | CTRL |
+            //                     | LALT | LGUI  | LSHIFT | Layer 1 / RET | LCTRL |    | RCTRL |     BSPC      | LAYER 2 / SPACE | RGUI | LALT |
             bindings = <
-&kp TAB   &kp Q  &kp W              &kp E                &kp R      &kp T                                                         &kp Y        &kp U     &kp I                 &kp O               &kp SEMI   &kp LBKT
-&kp ESC   &kp A  &left_ring LALT S  &left_middy LCTRL D  &kp F      &kp G                                                         &kp H        &kp J     &right_middy RCTRL K  &right_ring RALT L  &kp P      &kp SQT
-&kp LGUI  &kp Z  &kp X              &kp C                &kp V      &kp B            &kp DEL    &none          &none    &mo 3     &kp N        &kp M     &kp COMMA             &kp DOT             &kp MINUS  &kp RCTRL
-                                    &kp LALT             &kp LCTRL  &sk_shft LSHIFT  &lt 1 RET  &kp LGUI       &kp RGUI &kp BSPC  &lt 2 SPACE  &kp LALT  &kp RCTRL 
+&kp TAB   &kp Q  &kp W              &kp E                &kp R     &kp T                                                        &kp Y        &kp U     &kp I                 &kp O               &kp SEMI   &kp LBKT
+&kp ESC   &kp A  &left_ring LALT S  &left_middy LCTRL D  &kp F     &kp G                                                        &kp H        &kp J     &right_middy RCTRL K  &right_ring RALT L  &kp P      &kp SQT
+&kp LGUI  &kp Z  &kp X              &kp C                &kp V     &kp B       &kp DEL    &none           &none      &lt 3 DEL  &kp N        &kp M     &kp COMMA             &kp DOT             &kp MINUS  &kp RCTRL
+                                    &kp LALT             &kp LGUI  &kp LSHIFT  &lt 1 RET  &kp LCTRL       &kp RCTRL  &kp BSPC   &lt 2 SPACE  &kp RGUI  &kp LALT
             >;
         };
-        
 
         layer_Lower {
             // ---------------------------------------------------------------
