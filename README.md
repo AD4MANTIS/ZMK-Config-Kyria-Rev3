@@ -2,4 +2,6 @@
 
 ## Thumb cluster
 
+![layout.jpg](layout.jpg)
+
 ![thumb_cluster.svg](thumb_cluster.svg)
