@@ -207,6 +207,10 @@
 &kp LGUI  &kp Z  &kp X              &kp C                &kp D     &kp B       &kp DEL    &none         &none      &lt 3 DEL  &kp J        &kp H     &kp COMMA             &kp DOT             &kp MINUS  &kp RCTRL
                                     &kp LALT             &kp LGUI  &kp LSHIFT  &lt 1 RET  &kp LCTRL     &kp RCTRL  &kp BSPC   &lt 2 SPACE  &kp RGUI  &kp LALT
             >;
+
+            sensor-bindings =
+                <&inc_dec_kp 0 0>,
+                <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         layer_Lower {
