@@ -197,15 +197,15 @@
 
         default_layer {
             // -------------------------------------------------------------------------------------------------------------------------------------------
-            // |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                                    |        Z        |  U   |   I   |  O  |  Ö  |   Ü  |
-            // |  ESC  |  A  |  S  |  D   |   F   |   G    |                                                    |        H        |  J   |   K   |  L  |  P  |   Ä  |
-            // | LGUI  |  Y  |  X  |  C   |   V   |   B    |      DEL      |       |    |       | LAYER 3 / DEL |        N        |  M   |   ,   |  .  |  ß  | CTRL |
-            //                     | LALT | LGUI  | LSHIFT | Layer 1 / RET | LCTRL |    | RCTRL |     BSPC      | LAYER 2 / SPACE | RGUI | LALT |
+            // |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                                     |        Z        |   U   |   I   |  O  |  Ö  |   Ü  |
+            // |  ESC  |  A  |  S  |  D   |   F   |   G    |                                                     |        H        |   J   |   K   |  L  |  P  |   Ä  |
+            // | LGUI  |  Y  |  X  |  C   |   V   |   B    |      DEL      |      |    | Encoder | LAYER 3 / DEL |        N        |   M   |   ,   |  .  |  ß  | CTRL |
+            //                     | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    |  RGUI   |     BSPC      | LAYER 2 / SPACE | RCTRL | LALT  |
             bindings = <
-&kp TAB   &kp Q  &kp W              &kp F                &kp P     &kp V                                                      &kp Y        &kp L     &kp U                 &kp K               &kp SEMI   &kp LBKT
-&kp ESC   &kp A  &left_ring LALT S  &left_middy LCTRL R  &kp T     &kp G                                                      &kp M        &kp N     &right_middy RCTRL E  &right_ring RALT I  &kp O      &kp SQT
-&kp LGUI  &kp Z  &kp X              &kp C                &kp D     &kp B       &kp DEL    &none         &none      &lt 3 DEL  &kp J        &kp H     &kp COMMA             &kp DOT             &kp MINUS  &kp RCTRL
-                                    &kp LALT             &kp LGUI  &kp LSHIFT  &lt 1 RET  &kp LCTRL     &kp RCTRL  &kp BSPC   &lt 2 SPACE  &kp RGUI  &kp LALT
+&kp TAB   &kp Q  &kp W              &kp F                &kp P      &kp V                                                     &kp Y        &kp L      &kp U                 &kp K               &kp SEMI   &kp LBKT
+&kp ESC   &kp A  &left_ring LALT S  &left_middy LCTRL R  &kp T      &kp G                                                     &kp M        &kp N      &right_middy RCTRL E  &right_ring RALT I  &kp O      &kp SQT
+&kp LGUI  &kp Z  &kp X              &kp C                &kp D      &kp B       &kp DEL    &none         &none     &lt 3 DEL  &kp J        &kp H      &kp COMMA             &kp DOT             &kp MINUS  &kp RCTRL
+                                    &kp LALT             &kp LCTRL  &kp LSHIFT  &lt 1 RET  &kp LGUI      &kp RGUI  &kp BSPC   &lt 2 SPACE  &kp RCTRL  &kp LALT
             >;
 
             sensor-bindings =
