@@ -232,9 +232,9 @@
             // |  | \ | / | + | - | = |    | ( | ) | < | > | _ |  |
             // |  | ~ | ^ | & | | | % |    | [ | ] | @ | # | $ |  |
             bindings = <
-&none  &kp KP_MULTIPLY   &kp LS(DOT)      &kp LS(COMMA)  &kp LS(N1)      &kp LS(MINUS)                                     &kp LC(LA(N8))  &kp LC(LA(N9))  &kp LS(N2)  &kp LS(BSLH)  &GER_GRAVE    &none
-&none  &kp LS(LA(N7))    &kp KP_SLASH     &kp RBKT       &kp FSLH        &kp LS(N0)                                        &kp LS(N8)      &kp LS(N9)      &kp NUBS    &kp LS(NUBS)  &kp LS(FSLH)  &none
-&none  &kp LA(N)         &kp NON_US_BSLH  &kp LS(N6)     &kp LC(LA(N7))  &kp LS(N5)     &trans  &none      &none   &trans  &kp LA(N5)      &kp LA(N6)      &kp LA(L)   &kp BSLH      &kp LS(N4)    &none
+&none  &kp KP_MULTIPLY   &kp LS(DOT)      &kp LS(COMMA)  &kp LS(N1)      &kp LS(MINUS)                                     &kp LC(LA(N8))  &kp LC(LA(N9))  &kp LS(N2)  &kp LS(BSLH)   &GER_GRAVE    &none
+&none  &kp LS(LA(N7))    &kp KP_SLASH     &kp RBKT       &kp FSLH        &kp LS(N0)                                        &kp LS(N8)      &kp LS(N9)      &kp GRAVE   &kp LS(GRAVE)  &kp LS(FSLH)  &none
+&none  &kp LA(N)         &kp NON_US_BSLH  &kp LS(N6)     &kp LC(LA(N7))  &kp LS(N5)     &trans  &none      &none   &trans  &kp LA(N5)      &kp LA(N6)      &kp LA(L)   &kp BSLH       &kp LS(N4)    &none
                                           &trans         &trans          &trans         &trans  &trans     &trans  &trans  &trans          &trans          &trans
             >;
         };
