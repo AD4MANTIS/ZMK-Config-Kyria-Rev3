@@ -217,7 +217,7 @@
             // ---------------------------------------------------------------
             // |  | 1 | 2 | 3 | 4 | 5 |    |  F9  |  F10  | F11 | F12  |  |  |
             // |  | 6 | 7 | 8 | 9 | 0 |    | LEFT | RIGHT | UP  | DOWN |  |  |
-            // |  |      F1 - F5      |    |      | HOME  | END |      |  |  |
+            // |  |      F1 - F5      |    | BACK | HOME  | END | FWD  |  |  |
             bindings = <
 &trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                     &kp F9      &kp F10  &kp F11    &kp F12        &trans  &trans
 &trans  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0                                     &kp LEFT    &kp DOWN &kp UP     &kp RIGHT      &trans  &trans
@@ -232,16 +232,16 @@
             // |  | \ | / | + | - | = |    | ( | ) | < | > | _ |  |
             // |  | ~ | ^ | & | | | % |    | [ | ] | @ | # | $ |  |
             bindings = <
-&none  &kp KP_MULTIPLY    &kp LS(DOT)   &kp LS(COMMA)  &kp LS(N1)               &kp LS(MINUS)                                     &kp LC(LA(N7))  &kp LC(LA(N0))  &kp LS(N2)       &kp LS(BSLH)         &GER_GRAVE    &none
-&none  &kp LC(LA(MINUS))  &kp KP_SLASH  &kp RBKT       &kp FSLH                 &kp LS(N0)                                        &kp LS(N8)      &kp LS(N9)      &kp NON_US_BSLH  &kp LS(NON_US_BSLH)  &kp LS(FSLH)  &none
-&none  &kp LC(LA(RBKT))   &GER_CARET    &kp LS(N6)     &kp LC(LA(NON_US_BSLH))  &kp LS(N5)     &trans  &none      &none   &trans  &kp LC(LA(N8))  &kp LC(LA(N9))  &kp LC(LA(Q))    &kp BSLH             &kp LS(N4)    &none
-                                        &trans         &trans                   &trans         &trans  &trans     &trans  &trans  &trans          &trans          &trans
+&none  &kp KP_MULTIPLY   &kp LS(DOT)   &kp LS(COMMA)  &kp LS(N1)      &kp LS(MINUS)                                     &kp LC(LA(N8))  &kp LC(LA(N9))  &kp LS(N2)  &kp LS(BSLH)  &GER_GRAVE    &none
+&none  &kp LS(LC(N7))    &kp KP_SLASH  &kp RBKT       &kp FSLH        &kp LS(N0)                                        &kp LS(N8)      &kp LS(N9)      &kp LT      &kp GT        &kp LS(FSLH)  &none
+&none  &kp LA(N)  &NON_US_BSLH  &kp LS(N6)     &kp LC(LA(N7))  &kp LS(N5)     &trans  &none      &none   &trans  &kp LC(LA(N5))  &kp LC(LA(N6))  &kp LA(L)   &kp BSLH      &kp LS(N4)    &none
+                                       &trans         &trans          &trans         &trans  &trans     &trans  &trans  &trans          &trans          &trans
             >;
         };
 
         function_layer {
             // ------------------------------------------------------------------------------------------------------------------------------------
-            // |BT_CLR|BTSEL0|BTSEL1|   BTSEL2   |BTSEL3|BTSEL4|                                          |RGB_TOG|RGB_BRI|RGB_SAI|RGB_HUI|RGB_SPI|RGB_EFF|
+            // |BT_CLR|BTSEL0|BTSEL1|   BTSEL2   |BTSEL3|BTSEL4|                                         |RGB_TOG|RGB_BRI|RGB_SAI|RGB_HUI|RGB_SPI|RGB_EFF|
             // |      |      |C_PREV|C_PLAY_PAUSE|C_NEXT|      |                                         |       |RGB_BRD|RGB_SAD|RGB_HUD|RGB_SPD|RGB_EFR|
             // |      |      |      |            |      |      |      |      |      |      |      |      |       |       |       |       |       |       |
             //                      |            |      |      |      |      |      |      |      |      |       |       |       |
