@@ -211,6 +211,10 @@
     };
 };
 
+&sensors {
+    triggers-per-rotation = <36>;
+};
+
 / {
     keymap {
         compatible = "zmk,keymap";
@@ -264,10 +268,6 @@
 &none  &kp LA(N)         &GER_CARET    &kp LS(N6)     &kp LC(LA(N7))  &kp LS(N5)     &trans     &none      &none   &trans  &kp LA(N5)      &kp LA(N6)      &kp LA(L)   &kp BSLH       &kp LS(N4)        &kp LA(E)
                                        &trans         &trans          &trans         &lt 3 RET  &trans     &trans  &trans  &trans          &trans          &trans
             >;
-
-            sensor-bindings =
-                <&inc_dec_kp 0 0>,
-                <&inc_dec_kp C_AC_SCROLL_UP C_AC_SCROLL_DOWN>;
         };
 
         function_layer {
