@@ -228,7 +228,7 @@
             */
             bindings = <
 &kp TAB   &kp Q               &kp W              &kp F                &kp P      &kp V                                                           &kp Y        &kp L      &kp U                 &kp K               &kp SEMI             &kp LBKT
-&kp ESC   &left_pinky LGUI A  &left_ring LALT S  &left_middy LCTRL R  &kp T      &kp G                                                           &kp M        &kp N      &right_middy RCTRL E  &right_ring RALT I  &right_pinky LGUI O  &kp SQT
+&kp ESC   &left_pinky LGUI A  &left_ring LALT S  &left_middy LCTRL R  &lt 1 T    &kp G                                                           &kp M        &kp N      &right_middy RCTRL E  &right_ring LALT I  &right_pinky LGUI O  &kp SQT
 &kp LGUI  &kp Z               &kp X              &kp C                &kp D      &kp B       &kp DEL    &none         &none           &lt 3 DEL  &kp J        &kp H      &kp COMMA             &kp DOT             &kp MINUS            &kp RCTRL
                                                  &kp LALT             &kp LCTRL  &kp LSHIFT  &lt 1 RET  &kp LGUI      &mt LGUI K_APP  &kp BSPC   &lt 2 SPACE  &kp RCTRL  &kp LALT
             >;
