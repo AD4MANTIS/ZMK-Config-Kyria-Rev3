@@ -223,13 +223,13 @@
             /* --------------------------------------------------------------------------------------------------------------------------------------------------------------
                |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                                          |        Z        |   U   |   I   |  O  |  Ö  |   Ü   |
                |  ESC  |  A  |  S  |  D   |   F   |   G    |                                                          |        H        |   J   |   K   |  L  |  P  |   Ä   |
-               | LGUI  |  Y  |  X  |  C   |   V   |   B    |      DEL      |      |    |   Encoder    | LAYER 3 / DEL |        N        |   M   |   ,   |  .  |  ß  | RCTRL |
-                                   | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    | LGUI / K_APP |     BSPC      | LAYER 2 / SPACE | RCTRL | LALT  |
+               | LGUI  |  Y  |  X  |  C   |   V   |   B    |      DEL      |      |    | Encoder / C_MUTE | LAYER 3 / DEL |        N        |   M   |   ,   |  .  |  ß  | CMENU |
+                                   | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    |  LGUI / K_APP    |     BSPC      | LAYER 2 / SPACE | RCTRL | LALT  |
             */
             bindings = <
 &kp TAB   &kp Q               &kp W              &kp F                &kp P      &kp V                                                           &kp Y        &kp L      &kp U                 &kp K               &kp SEMI             &kp LBKT
-&kp ESC   &left_pinky LGUI A  &left_ring LALT S  &left_middy LCTRL R  &lt 1 T    &kp G                                                           &kp M        &kp N      &right_middy RCTRL E  &right_ring LALT I  &right_pinky LGUI O  &kp SQT
-&kp LGUI  &kp Z               &kp X              &kp C                &kp D      &kp B       &kp DEL    &none         &none           &lt 3 DEL  &kp J        &kp H      &kp COMMA             &kp DOT             &kp MINUS            &kp RCTRL
+&kp ESC   &left_pinky LGUI A  &left_ring LALT S  &left_middy LCTRL R  &lt 1 T    &kp G                                                           &kp M        &lt 1 N    &right_middy RCTRL E  &right_ring LALT I  &right_pinky LGUI O  &kp SQT
+&kp LGUI  &kp Z               &kp X              &kp C                &kp D      &kp B       &kp DEL    &none         &kp C_MUTE      &lt 3 DEL  &kp J        &kp H      &kp COMMA             &kp DOT             &kp MINUS            &kp K_CONTEXT_MENU
                                                  &kp LALT             &kp LCTRL  &kp LSHIFT  &lt 1 RET  &kp LGUI      &mt LGUI K_APP  &kp BSPC   &lt 2 SPACE  &kp RCTRL  &kp LALT
             >;
 
@@ -263,10 +263,10 @@
                |  | ~ | ^ | & | | | % |    | [ | ] | @ | # | $ | € |
             */
             bindings = <
-&none  &kp KP_MULTIPLY    &kp LS(DOT)   &kp LS(COMMA)  &kp LS(N1)               &kp LS(MINUS)                                     &kp LC(LA(N7))  &kp LC(LA(N0))  &kp LS(N2)       &kp LS(BSLH)         &GER_GRAVE_RIGHT  &GER_GRAVE_LEFT
-&none  &kp LC(LA(MINUS))  &kp KP_SLASH  &kp RBKT       &kp FSLH                 &kp LS(N0)                                        &kp LS(N8)      &kp LS(N9)      &kp NON_US_BSLH  &kp LS(NON_US_BSLH)  &kp LS(FSLH)      &none
-&none  &kp LC(LA(RBKT))   &GER_CARET    &kp LS(N6)     &kp LC(LA(NON_US_BSLH))  &kp LS(N5)     &trans  &none      &none   &trans  &kp LC(LA(N8))  &kp LC(LA(N9))  &kp LC(LA(Q))    &kp BSLH             &kp LS(N4)        &kp LC(LA(E))
-                                        &trans         &trans                   &lt 3 RET      &trans  &trans     &trans  &trans  &trans          &trans          &trans
+&none  &kp KP_MULTIPLY    &kp LS(DOT)   &kp LS(COMMA)  &kp LS(N1)               &kp LS(MINUS)                                        &kp LC(LA(N7))  &kp LC(LA(N0))  &kp LS(N2)       &kp LS(BSLH)         &GER_GRAVE_RIGHT  &GER_GRAVE_LEFT
+&none  &kp LC(LA(MINUS))  &kp KP_SLASH  &kp RBKT       &kp FSLH                 &kp LS(N0)                                           &kp LS(N8)      &kp LS(N9)      &kp NON_US_BSLH  &kp LS(NON_US_BSLH)  &kp LS(FSLH)      &none
+&none  &kp LC(LA(RBKT))   &GER_CARET    &kp LS(N6)     &kp LC(LA(NON_US_BSLH))  &kp LS(N5)     &trans     &none      &none   &trans  &kp LC(LA(N8))  &kp LC(LA(N9))  &kp LC(LA(Q))    &kp BSLH             &kp LS(N4)        &kp LC(LA(E))
+                                        &trans         &trans                   &trans         &lt 3 RET  &trans     &trans  &trans  &trans          &trans          &trans
             >;
         };
 
