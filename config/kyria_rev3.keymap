@@ -249,11 +249,11 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            /* --------------------------------------------------------------------------------------------------------------------------------------------------------------
+            /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
                |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                                              |        Z        |   U   |   I   |  O  |  Ö  |   Ü   |
                |  ESC  |  A  |  S  |  D   |   F   |   G    |                                                              |        H        |   J   |   K   |  L  |  P  |   Ä   |
                | TOG 1 |  Y  |  X  |  C   |   V   |   B    |      DEL      |  ■   |    | Encoder / C_MUTE | LAYER 3 / DEL |        N        |   M   |   ,   |  .  |  ß  | CMENU |
-                                   | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    |  LGUI / K_APP    |     BSPC      | LAYER 2 / SPACE | RCTRL | LALT  |
+                                   | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    |   LGUI / K_APP   |   BACKSPACE   | LAYER 2 / SPACE | RCTRL | LALT  |
             */
             bindings = <
 &kp TAB  &kp Q               &kp W              &kp F                &kp P      &kp V                                                           &kp Y        &kp L      &kp U                 &kp K               &kp DE_UE            &kp DE_UE
@@ -268,16 +268,16 @@
         };
 
         layer_Lower {
-            /* ---------------------------------------------------------------
+            /* ------------------------------------------------------------------------------
                | □ |      F1 - F5      |    |  F9  | F10  | F11 |  F12  |   PREV_TAB    | ■ |
                | □ | 1 | 2 | 3 | 4 | 5 |    | LEFT | DONW | UP  | RIGHT | NAVIGATE_BACK | NAVIGATE_FORWARD |
                | □ | 6 | 7 | 8 | 9 | 0 |    | HOME | END  |  □  |   □   |   NEXT_TAB    | □ |
             */
             bindings = <
-&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                                     &kp F9    &kp F10  &kp F11  &kp F12    &PREV_TAB       &none
-&trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                     &kp LEFT  &kp DOWN &kp UP   &kp RIGHT  &NAVIGATE_BACK  &NAVIGATE_FORWARD
-&trans  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &trans  &none      &none   &trans  &kp HOME  &kp END  &trans   &trans     &NEXT_TAB       &trans
-                        &trans  &trans  &trans  &trans  &trans     &trans  &trans  &trans    &trans   &trans
+&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                                      &kp F9    &kp F10  &kp F11  &kp F12    &PREV_TAB       &none
+&trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                      &kp LEFT  &kp DOWN &kp UP   &kp RIGHT  &NAVIGATE_BACK  &NAVIGATE_FORWARD
+&trans  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &trans  &none      &none   &trans   &kp HOME  &kp END  &trans   &trans     &NEXT_TAB       &trans
+                        &trans  &trans  &trans  &trans  &trans     &trans  &kp DEL  &trans    &trans   &trans
             >;
 
             sensor-bindings =
