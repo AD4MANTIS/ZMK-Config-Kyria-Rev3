@@ -102,19 +102,19 @@
         };
 
         ZMK_MACRO(PREV_TAB,
-            binding = <&kp LC(LS(TAB))>
+            binding = <&kp LC(LS(TAB))>;
         )
 
         ZMK_MACRO(NEXT_TAB,
-            binding = <&kp LC(TAB)>
+            binding = <&kp LC(TAB)>;
         )
 
         ZMK_MACRO(NAVIGATE_BACK,
-            binding = <&kp LC(DE_MINUS)>
+            binding = <&kp LC(DE_MINUS)>;
         )
 
         ZMK_MACRO(NAVIGATE_FORWARD,
-            binding = <&kp LC(LS(DE_MINUS))>
+            binding = <&kp LC(LS(DE_MINUS))>;
         )
     };
 };
