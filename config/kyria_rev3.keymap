@@ -67,7 +67,7 @@
 
 // REPEAT_DECAY defines how much time you have left (milliseconds)
 // after tapping a key to hold it again in order to make it auto-repeat.
-#define REPEAT_DECAY 200 // "tap then hold" for key auto-repeat
+#define REPEAT_DECAY 150 // "tap then hold" for key auto-repeat
 
 / {
     macros {
@@ -75,7 +75,7 @@
         GER_CARET: GER_CARET {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            
+
             bindings
                 = <&kp DE_CARET>
                 , <&kp SPACE>;
@@ -85,17 +85,17 @@
         GER_GRAVE_RIGHT: GER_GRAVE_RIGHT {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            
+
             bindings
                 = <&kp DE_GRAVE>
                 , <&kp SPACE>;
         };
-        
+
         // ´
         GER_GRAVE_LEFT: GER_GRAVE_LEFT {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            
+
             bindings
                 = <&kp DE_ACUTE>
                 , <&kp SPACE>;
@@ -128,7 +128,7 @@
     behaviors {
         /*
            key positions index for positional hold-tap
-       
+
            |-----------------------------|-----------------------------|
            | LEFT_HAND_KEYS              |             RIGHT_HAND_KEYS |
            |    0  1  2  3  4  5         |         6  7  8  9 10 11    |
@@ -270,12 +270,12 @@
         layer_Lower {
             /* ------------------------------------------------------------------------------
                | □ |      F1 - F5      |    |  F9  | F10  | F11 |  F12  |   PREV_TAB    | ■ |
-               | □ | 1 | 2 | 3 | 4 | 5 |    | LEFT | DONW | UP  | RIGHT | NAVIGATE_BACK | NAVIGATE_FORWARD |
+               | 0 | 1 | 2 | 3 | 4 | 5 |    | LEFT | DONW | UP  | RIGHT | NAVIGATE_BACK | NAVIGATE_FORWARD |
                | □ | 6 | 7 | 8 | 9 | 0 |    | HOME | END  |  □  |   □   |   NEXT_TAB    | □ |
             */
             bindings = <
 &trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                                      &kp F9    &kp F10  &kp F11  &kp F12    &PREV_TAB       &none
-&trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                      &kp LEFT  &kp DOWN &kp UP   &kp RIGHT  &NAVIGATE_BACK  &NAVIGATE_FORWARD
+&kp N0  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                      &kp LEFT  &kp DOWN &kp UP   &kp RIGHT  &NAVIGATE_BACK  &NAVIGATE_FORWARD
 &trans  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &trans  &none      &none   &trans   &kp HOME  &kp END  &trans   &trans     &NEXT_TAB       &trans
                         &trans  &trans  &trans  &trans  &trans     &trans  &kp DEL  &trans    &trans   &trans
             >;
@@ -288,14 +288,14 @@
         layer_Symbol {
             /* ------------------------------------------------------
                | □ | * | + | - | = | # |    | \ | / | " | ' | ` | ´ |
-               | □ | _ | : | ; | ? | ! |    | $ | ( | ) | { | } | ° |
-               | ~ | ^ | & | | | % | @ |    | € | [ | ] | < | > | § |
+               | □ | _ | : | ; | ? | ! |    | $ | ( | { | [ | < | ° |
+               | ~ | ^ | & | | | % | @ |    | € | ) | } | ] | > | § |
             */
             bindings = <
-&trans        &kp KP_MULTIPLY    &kp KP_PLUS       &kp KP_MINUS      &kp DE_EQUAL     &kp DE_HASH                                           &kp DE_BACKSLASH  &kp KP_SLASH             &kp DE_DOUBLE_QUOTES      &kp DE_APOSTROPHE  &GER_GRAVE_RIGHT     &GER_GRAVE_LEFT
-&trans        &kp DE_UNDERSCORE  &kp DE_COLON      &kp DE_SEMICOLON  &kp DE_QUESTION  &kp DE_EXCLAMATION                                    &kp DE_DOLLAR     &kp DE_LEFT_PARENTHESIS  &kp DE_RIGHT_PARENTHESIS  &kp DE_LEFT_BRACE  &kp DE_RIGHT_BRACE   &kp DE_DEGREE
-&kp DE_TILDE  &GER_CARET         &kp DE_AMPERSAND  &kp DE_PIPE       &kp DE_PERCENT   &kp DE_AT_SIGN      &trans  &none     &none   &trans  &kp DE_EURO       &kp DE_LEFT_BRACKET      &kp DE_RIGHT_BRACKET      &kp DE_LESS_THAN   &kp DE_GREATER_THAN  &kp DE_SECTION
-                                                   &trans            &trans           &trans              &trans  &trans    &trans  &trans  &trans            &trans                   &trans
+&trans        &kp KP_MULTIPLY    &kp KP_PLUS       &kp KP_MINUS      &kp DE_EQUAL     &kp DE_HASH                                           &kp DE_BACKSLASH  &kp KP_SLASH              &kp DE_DOUBLE_QUOTES  &kp DE_APOSTROPHE     &GER_GRAVE_RIGHT     &GER_GRAVE_LEFT
+&trans        &kp DE_UNDERSCORE  &kp DE_COLON      &kp DE_SEMICOLON  &kp DE_QUESTION  &kp DE_EXCLAMATION                                    &kp DE_DOLLAR     &kp DE_LEFT_PARENTHESIS   &kp DE_LEFT_BRACE     &kp DE_LEFT_BRACKET   &kp DE_LESS_THAN     &kp DE_DEGREE
+&kp DE_TILDE  &GER_CARET         &kp DE_AMPERSAND  &kp DE_PIPE       &kp DE_PERCENT   &kp DE_AT_SIGN      &trans  &none     &none   &trans  &kp DE_EURO       &kp DE_RIGHT_PARENTHESIS  &kp DE_RIGHT_BRACE    &kp DE_RIGHT_BRACKET  &kp DE_GREATER_THAN  &kp DE_SECTION
+                                                   &trans            &trans           &trans              &trans  &trans    &trans  &trans  &trans            &trans                    &trans
             >;
         };
 
