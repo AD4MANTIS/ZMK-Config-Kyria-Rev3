@@ -256,7 +256,7 @@
                                    | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    |   LGUI / K_APP   |   BACKSPACE   | LAYER 2 / SPACE | RCTRL | LALT  |
             */
             bindings = <
-&kp TAB  &kp Q               &kp W              &kp F                &kp P      &kp V                                                           &kp Y        &kp L      &kp U                 &kp K               &kp DE_UE            &kp DE_UE
+&kp TAB  &kp Q               &kp W              &kp F                &kp P      &kp V                                                           &kp Y        &kp L      &kp U                 &kp K               &kp DE_OE            &kp DE_UE
 &kp ESC  &left_pinky LGUI A  &left_ring LALT S  &left_middy LCTRL R  &lt 1 T    &kp G                                                           &kp M        &lt 1 N    &right_middy RCTRL E  &right_ring LALT I  &right_pinky LGUI O  &kp DE_AE
 &tog 1   &kp Z               &kp X              &kp C                &kp D      &kp B       &kp DEL    &none         &kp C_MUTE      &lt 3 DEL  &kp J        &kp H      &kp COMMA             &kp DOT             &kp DE_SZ            &kp K_CONTEXT_MENU
                                                 &kp LALT             &kp LCTRL  &kp LSHIFT  &lt 1 RET  &kp LGUI      &mt LGUI K_APP  &kp BSPC   &lt 2 SPACE  &kp RCTRL  &kp LALT
