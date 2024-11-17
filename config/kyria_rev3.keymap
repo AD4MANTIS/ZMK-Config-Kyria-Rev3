@@ -19,6 +19,10 @@
     // chain-length = <25>; // Uncomment if using only per-key LEDs.
 };
 
+&sensors {
+    triggers-per-rotation = <36>;
+};
+
 // DIFFICULTY_THRESHOLD specifies your level of expertise with this keymap.
 // It's meant to help newcomers gradually work their way up to mastery.
 // You can disable this setting by omitting it or assigning a `0` zero.
@@ -230,6 +234,9 @@
     };
 };
 
+#define HRM_L(mod_key1, mod_key2, mod_key3) &left_pinky mod_key1 &left_ring mod_key2 &left_middy mod_key3
+#define HRM_R(mod_key1, mod_key2, mod_key3) &right_pinky mod_key1 &right_ring mod_key2 &right_middy mod_key3
+
 / {
     conditional_layers {
         compatible = "zmk,conditional-layers";
@@ -240,26 +247,26 @@
     };
 };
 
-&sensors {
-    triggers-per-rotation = <36>;
-};
-
 / {
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
-            /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-               |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                                              |        Z        |   U   |   I   |  O  |  Ö  |   Ü   |
-               |  ESC  |  A  |  S  |  D   |   F   |   G    |                                                              |        H        |   J   |   K   |  L  |  P  |   Ä   |
-               | TOG 1 |  Y  |  X  |  C   |   V   |   B    |      DEL      |  ■   |    | Encoder / C_MUTE | LAYER 3 / DEL |        N        |   M   |   ,   |  .  |  ß  | CMENU |
-                                   | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    |   LGUI / K_APP   |   BACKSPACE   | LAYER 2 / SPACE | RCTRL | LALT  |
-            */
             bindings = <
-&kp TAB  &kp Q               &kp W              &kp F                &kp P      &kp V                                                           &kp Y        &kp L      &kp U                 &kp K               &kp DE_OE            &kp DE_UE
-&kp ESC  &left_pinky LGUI A  &left_ring LALT S  &left_middy LCTRL R  &lt 1 T    &kp G                                                           &kp M        &lt 1 N    &right_middy RCTRL E  &right_ring LALT I  &right_pinky LGUI O  &kp DE_AE
-&tog 1   &kp Z               &kp X              &kp C                &kp D      &kp B       &kp DEL    &none         &kp C_MUTE      &lt 3 DEL  &kp J        &kp H      &kp COMMA             &kp DOT             &kp DE_SZ            &kp K_CONTEXT_MENU
-                                                &kp LALT             &kp LCTRL  &kp LSHIFT  &lt 1 RET  &kp LGUI      &mt LGUI K_APP  &kp BSPC   &lt 2 SPACE  &kp RCTRL  &kp LALT
+
+//┌──────────┬───────────────┬──────────┬──────────┬──────────┬──────────┐                                                                 ┌───────────────┬───────────────┬───────────────┬──────────┬──────────┬────────────────────┐
+//│     TAB  │        Q      │      W   │      F   │      P   │      V   │                                                                 │         Y     │         L     │        U      │      K   │    Ö     │         Ü          │
+    &kp TAB       &kp Q         &kp W      &kp F      &kp P      &kp V                                                                           &kp Y           &kp L          &kp U         &kp K    &kp DE_OE       &kp DE_UE
+//├──────────┼───────────────┼──────────┼──────────┼──────────┼──────────┤                                                                 ├───────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
+//│     ESC  │       LGUI A  │  LALT S  │ LCTRL R  │     1 T  │      G   │                                                                 │         M     │        1 N    │       RCTRL E │  LALT I  │  LGUI O  │         Ä          │
+    &kp ESC    HRM_L(LGUI A  ,  LALT S  , LCTRL R  ) &lt 1 T     &kp G                                                                           &kp M          &lt 1 N      HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
+//├──────────┼───────────────┼──────────┼──────────┼──────────┼──────────┼───────────────┬──────────┐ ┌────────────────────┬───────────────┼───────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
+//│          │        Z      │      X   │      C   │      D   │      B   │    DELETE     │          │ │  Encoder / C_MUTE  │    DELETE     │         J     │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
+     &tog 1       &kp Z         &kp X      &kp C      &kp D      &kp B        &kp DEL       &none           &kp C_MUTE            DEL            &kp J           &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
+//└──────────┴───────────────┴──────────┼──────────┼──────────┼──────────┼───────────────┼──────────┤ ├────────────────────┼───────────────┼───────────────┼───────────────┼───────────────┼──────────┴──────────┴────────────────────┘
+//                                      │     LALT │    LCTRL │    LSHIFT│ Layer 1 / RET │     LGUI │ │     LGUI / K_APP   │   BACKSPACE   │LAYER 2 / SPACE│       RCTRL   │       LALT    │
+                                          &kp LALT  &kp LCTRL  &kp LSHIFT    &lt 1 RET     &kp LGUI      &mt LGUI K_APP        &kp BSPC       &lt 2 SPACE      &kp RCTRL       &kp LALT
+//                                      └──────────┴──────────┴──────────┴───────────────┴──────────┘ └────────────────────┴───────────────┴───────────────┴───────────────┴───────────────┘
             >;
 
             sensor-bindings =
