@@ -254,8 +254,13 @@
         compatible = "zmk,keymap";
 
         default_layer {
+            /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+               |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                                              |        Z        |   U   |   I   |  O  |  Ö  |   Ü   |
+               |  ESC  |  A  |  S  |  D   |   F   |   G    |                                                              |        H        |   J   |   K   |  L  |  P  |   Ä   |
+               | TOG 1 |  Y  |  X  |  C   |   V   |   B    |      DEL      |  ■   |    | Encoder / C_MUTE | LAYER 3 / DEL |        N        |   M   |   ,   |  .  |  ß  | CMENU |
+                                   | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    |   LGUI / K_APP   |   BACKSPACE   | LAYER 2 / SPACE | RCTRL | LALT  |
+            */
             bindings = <
-
 //┌──────────┬───────────────┬──────────┬──────────┬──────────┬──────────┐                                                                 ┌───────────────┬───────────────┬───────────────┬──────────┬──────────┬────────────────────┐
 //│     TAB  │        Q      │      W   │      F   │      P   │      V   │                                                                 │         Y     │         L     │        U      │      K   │    Ö     │         Ü          │
     &kp TAB       &kp Q         &kp W      &kp F      &kp P      &kp V                                                                           &kp Y           &kp L          &kp U         &kp K    &kp DE_OE       &kp DE_UE
@@ -264,7 +269,7 @@
     &kp ESC    HRM_L(LGUI A  ,  LALT S  , LCTRL R  ) &lt 1 T     &kp G                                                                           &kp M          &lt 1 N      HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
 //├──────────┼───────────────┼──────────┼──────────┼──────────┼──────────┼───────────────┬──────────┐ ┌────────────────────┬───────────────┼───────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
 //│          │        Z      │      X   │      C   │      D   │      B   │    DELETE     │          │ │  Encoder / C_MUTE  │    DELETE     │         J     │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
-     &tog 1       &kp Z         &kp X      &kp C      &kp D      &kp B        &kp DEL       &none           &kp C_MUTE            DEL            &kp J           &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
+     &tog 1       &kp Z         &kp X      &kp C      &kp D      &kp B        &kp DEL       &none           &kp C_MUTE          &kp DEL          &kp J           &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
 //└──────────┴───────────────┴──────────┼──────────┼──────────┼──────────┼───────────────┼──────────┤ ├────────────────────┼───────────────┼───────────────┼───────────────┼───────────────┼──────────┴──────────┴────────────────────┘
 //                                      │     LALT │    LCTRL │    LSHIFT│ Layer 1 / RET │     LGUI │ │     LGUI / K_APP   │   BACKSPACE   │LAYER 2 / SPACE│       RCTRL   │       LALT    │
                                           &kp LALT  &kp LCTRL  &kp LSHIFT    &lt 1 RET     &kp LGUI      &mt LGUI K_APP        &kp BSPC       &lt 2 SPACE      &kp RCTRL       &kp LALT
@@ -316,7 +321,7 @@
 //│               │     _              │      :             │      ;             │      ?             │     !              │                                     │      $             │      (                  │    {               │    [               │ <                  │   °                │
      &trans         &kp DE_UNDERSCORE     &kp DE_COLON         &kp DE_SEMICOLON     &kp DE_QUESTION     &kp DE_EXCLAMATION                                          &kp DE_DOLLAR       &kp DE_LEFT_PARENTHESIS  &kp DE_LEFT_BRACE    &kp DE_LEFT_BRACKET  &kp DE_LESS_THAN       &kp DE_DEGREE
 //├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┬────────┐ ┌────────┬────────┼────────────────────┼─────────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
-//│      ~        │     ^              │      &             │      |             │      %             │     @              │                                     │      €             │      )                  │    }               │    [               │ >                  │   §                │
+//│      ~        │     ^              │      &             │      |             │      %             │     @              │                                     │      €             │      )                  │    }               │    ]               │ >                  │   §                │
      &kp DE_TILDE   &GER_CARET            &kp DE_AMPERSAND     &kp DE_PIPE          &kp DE_PERCENT      &kp DE_AT_SIGN       &trans   &none      &none    &trans    &kp DE_EURO         &kp DE_RIGHT_PARENTHESIS &kp DE_RIGHT_BRACE   &kp DE_RIGHT_BRACKET &kp DE_GREATER_THAN    &kp DE_SECTION
 //└───────────────┴────────────────────┴────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┼────────┤ ├────────┼────────┼────────────────────┼─────────────────────────┼────────────────────┼────────────────────┴────────────────────┴────────────────────┘
                                                                &trans               &trans              &trans               &trans   &trans     &trans   &trans    &trans              &trans                   &trans
