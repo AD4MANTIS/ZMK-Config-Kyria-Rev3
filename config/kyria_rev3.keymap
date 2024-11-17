@@ -237,6 +237,8 @@
 #define HRM_L(mod_key1, mod_key2, mod_key3) &left_pinky mod_key1 &left_ring mod_key2 &left_middy mod_key3
 #define HRM_R(mod_key1, mod_key2, mod_key3) &right_pinky mod_key1 &right_ring mod_key2 &right_middy mod_key3
 
+#define RGB_UG(action) &rgb_ug RGB_##action
+
 / {
     conditional_layers {
         compatible = "zmk,conditional-layers";
@@ -258,7 +260,7 @@
 //│     TAB  │        Q      │      W   │      F   │      P   │      V   │                                                                 │         Y     │         L     │        U      │      K   │    Ö     │         Ü          │
     &kp TAB       &kp Q         &kp W      &kp F      &kp P      &kp V                                                                           &kp Y           &kp L          &kp U         &kp K    &kp DE_OE       &kp DE_UE
 //├──────────┼───────────────┼──────────┼──────────┼──────────┼──────────┤                                                                 ├───────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
-//│     ESC  │       LGUI A  │  LALT S  │ LCTRL R  │     1 T  │      G   │                                                                 │         M     │        1 N    │       RCTRL E │  LALT I  │  LGUI O  │         Ä          │
+//│     ESC  │       LGUI A  │  LALT S  │ LCTRL R  │     1 T  │      G   │                                                                 │         M     │  Layer 1 / N  │       RCTRL E │  LALT I  │  LGUI O  │         Ä          │
     &kp ESC    HRM_L(LGUI A  ,  LALT S  , LCTRL R  ) &lt 1 T     &kp G                                                                           &kp M          &lt 1 N      HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
 //├──────────┼───────────────┼──────────┼──────────┼──────────┼──────────┼───────────────┬──────────┐ ┌────────────────────┬───────────────┼───────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
 //│          │        Z      │      X   │      C   │      D   │      B   │    DELETE     │          │ │  Encoder / C_MUTE  │    DELETE     │         J     │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
@@ -281,10 +283,18 @@
                | □ | 6 | 7 | 8 | 9 | 0 |    | HOME | END  |  □  |   □   |   NEXT_TAB    | □ |
             */
             bindings = <
-&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                                      &kp F9    &kp F10  &kp F11  &kp F12    &PREV_TAB       &none
-&kp N0  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                      &kp LEFT  &kp DOWN &kp UP   &kp RIGHT  &NAVIGATE_BACK  &NAVIGATE_FORWARD
-&trans  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &trans  &none      &none   &trans   &kp HOME  &kp END  &trans   &trans     &NEXT_TAB       &trans
-                        &trans  &trans  &trans  &trans  &trans     &trans  &kp DEL  &trans    &trans   &trans
+//┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                                      ┌──────────┬──────────┬──────────┬──────────┬───────────────┬────────────────────┐
+//│          │      F1  │      F2  │      F3  │      F4  │      F5  │                                      │      F9  │     F10  │     F11  │     F12  │  PREV_TAB     │                    │
+     &trans     &kp F1     &kp F2     &kp F3     &kp F4     &kp F5                                            &kp F9    &kp F10    &kp F11    &kp F12    &PREV_TAB       &none
+//├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                                      ├──────────┼──────────┼──────────┼──────────┼───────────────┼────────────────────┤
+//│       0  │       1  │       2  │       3  │       4  │       5  │                                      │     LEFT │     DOWN │      UP  │    RIGHT │ NAVIGATE_BACK │  NAVIGATE_FORWARD  │
+     &kp N0     &kp N1     &kp N2     &kp N3     &kp N4     &kp N5                                           &kp LEFT   &kp DOWN    &kp UP   &kp RIGHT  &NAVIGATE_BACK   &NAVIGATE_FORWARD
+//├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┬────────┐ ┌────────┬─────────┼──────────┼──────────┼──────────┼──────────┼───────────────┼────────────────────┤
+//│          │       6  │       7  │       8  │       9  │       0  │        │        │ │        │         │     HOME │     END  │          │          │    NEXT_TAB   │                    │
+     &trans     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0    &trans   &none      &none    &trans    &kp HOME   &kp END     &trans     &trans      &NEXT_TAB     &trans
+//└──────────┴──────────┴──────────┼──────────┼──────────┼──────────┼────────┼────────┤ ├────────┼─────────┼──────────┼──────────┼──────────┼──────────┴───────────────┴────────────────────┘
+                                      &trans     &trans     &trans    &trans   &trans     &trans   &kp DEL   &trans     &trans      &trans
+//                                 └──────────┴──────────┴──────────┴────────┴────────┘ └────────┴─────────┴──────────┴──────────┴──────────┘
             >;
 
             sensor-bindings =
@@ -299,10 +309,18 @@
                | ~ | ^ | & | | | % | @ |    | € | ) | } | ] | > | § |
             */
             bindings = <
-&trans        &kp KP_MULTIPLY    &kp KP_PLUS       &kp KP_MINUS      &kp DE_EQUAL     &kp DE_HASH                                           &kp DE_BACKSLASH  &kp KP_SLASH              &kp DE_DOUBLE_QUOTES  &kp DE_APOSTROPHE     &GER_GRAVE_RIGHT     &GER_GRAVE_LEFT
-&trans        &kp DE_UNDERSCORE  &kp DE_COLON      &kp DE_SEMICOLON  &kp DE_QUESTION  &kp DE_EXCLAMATION                                    &kp DE_DOLLAR     &kp DE_LEFT_PARENTHESIS   &kp DE_LEFT_BRACE     &kp DE_LEFT_BRACKET   &kp DE_LESS_THAN     &kp DE_DEGREE
-&kp DE_TILDE  &GER_CARET         &kp DE_AMPERSAND  &kp DE_PIPE       &kp DE_PERCENT   &kp DE_AT_SIGN      &trans  &none     &none   &trans  &kp DE_EURO       &kp DE_RIGHT_PARENTHESIS  &kp DE_RIGHT_BRACE    &kp DE_RIGHT_BRACKET  &kp DE_GREATER_THAN  &kp DE_SECTION
-                                                   &trans            &trans           &trans              &trans  &trans    &trans  &trans  &trans            &trans                    &trans
+//┌───────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┐                                     ┌────────────────────┬─────────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┐
+//│               │     *              │      +             │      -             │      =             │     #              │                                     │      \             │      /                  │    "               │    '               │ `                  │   ´                │
+     &trans         &kp KP_MULTIPLY       &kp KP_PLUS          &kp KP_MINUS         &kp DE_EQUAL        &kp DE_HASH                                                 &kp DE_BACKSLASH    &kp KP_SLASH             &kp DE_DOUBLE_QUOTES &kp DE_APOSTROPHE    &GER_GRAVE_RIGHT       &GER_GRAVE_LEFT
+//├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤                                     ├────────────────────┼─────────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
+//│               │     _              │      :             │      ;             │      ?             │     !              │                                     │      $             │      (                  │    {               │    [               │ <                  │   °                │
+     &trans         &kp DE_UNDERSCORE     &kp DE_COLON         &kp DE_SEMICOLON     &kp DE_QUESTION     &kp DE_EXCLAMATION                                          &kp DE_DOLLAR       &kp DE_LEFT_PARENTHESIS  &kp DE_LEFT_BRACE    &kp DE_LEFT_BRACKET  &kp DE_LESS_THAN       &kp DE_DEGREE
+//├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┬────────┐ ┌────────┬────────┼────────────────────┼─────────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
+//│      ~        │     ^              │      &             │      |             │      %             │     @              │                                     │      €             │      )                  │    }               │    [               │ >                  │   §                │
+     &kp DE_TILDE   &GER_CARET            &kp DE_AMPERSAND     &kp DE_PIPE          &kp DE_PERCENT      &kp DE_AT_SIGN       &trans   &none      &none    &trans    &kp DE_EURO         &kp DE_RIGHT_PARENTHESIS &kp DE_RIGHT_BRACE   &kp DE_RIGHT_BRACKET &kp DE_GREATER_THAN    &kp DE_SECTION
+//└───────────────┴────────────────────┴────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┼────────┤ ├────────┼────────┼────────────────────┼─────────────────────────┼────────────────────┼────────────────────┴────────────────────┴────────────────────┘
+                                                               &trans               &trans              &trans               &trans   &trans     &trans   &trans    &trans              &trans                   &trans
+//                                                          └────────────────────┴────────────────────┴────────────────────┴────────┴────────┘ └────────┴────────┴────────────────────┴─────────────────────────┴────────────────────┘
             >;
         };
 
@@ -313,10 +331,17 @@
                |      |      |      |            |      |      |    |       |       |       |       |       |       |
             */
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2     &bt BT_SEL 3  &bt BT_SEL 4                                     &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_SPI  &rgb_ug RGB_EFF
-&trans      &trans        &kp C_PREV    &kp C_PLAY_PAUSE &kp C_NEXT    &trans                                           &trans           &rgb_ug RGB_BRD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR
-&trans      &trans        &trans        &trans           &trans        &trans        &trans  &trans     &trans  &trans  &trans           &trans           &trans           &trans           &trans           &trans
-                                        &trans           &trans        &trans        &trans  &trans     &trans  &trans  &trans           &trans           &trans
+//┌──────────┬───────────────┬───────────────┬────────────────────┬───────────────┬───────────────┐                                     ┌───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────┐
+//│          │               │               │                    │               │               │                                     │ Underglow tog │Bright increase│  Sat increase │  Hue increase │Speed increase │Effect forward │
+   &bt BT_CLR  &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2         &bt BT_SEL 3    &bt BT_SEL 4                                           RGB_UG(TOG)     RGB_UG(BRI)     RGB_UG(SAI)     RGB_UG(HUI)     RGB_UG(SPI)     RGB_UG(EFF)
+//├──────────┼───────────────┼───────────────┼────────────────────┼───────────────┼───────────────┤                                     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+//│          │               │       ⏮︎       │         ⏯︎          │     ⏭︎         │               │                                     │               │Bright decrease│  Sat decrease │  Hue decrease │Speed increase │Effect reverse │
+   &trans      &trans          &kp C_PREV      &kp C_PLAY_PAUSE     &kp C_NEXT      &trans                                                 &trans          RGB_UG(BRD)     RGB_UG(SAD)     RGB_UG(HUD)     RGB_UG(SPD)     RGB_UG(EFR)
+//├──────────┼───────────────┼───────────────┼────────────────────┼───────────────┼───────────────┼────────┬────────┐ ┌────────┬────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+   &trans      &trans          &trans          &trans               &trans          &trans          &trans   &trans     &trans   &trans    &trans          &trans          &trans          &trans          &trans          &trans
+//└──────────┴───────────────┴───────────────┼────────────────────┼───────────────┼───────────────┼────────┼────────┤ ├────────┼────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────┘
+                                               &trans               &trans          &trans          &trans   &trans     &trans   &trans    &trans          &trans          &trans
+//                                           └────────────────────┴───────────────┴───────────────┴────────┴────────┘ └────────┴────────┴───────────────┴───────────────┴───────────────┘
             >;
 
             sensor-bindings =
