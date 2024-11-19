@@ -255,21 +255,21 @@
 
         default_layer {
             /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-               |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                                              |        Z        |   U   |   I   |  O  |  Ö  |   Ü   |
-               |  ESC  |  A  |  S  |  D   |   F   |   G    |                                                              |        H        |   J   |   K   |  L  |  P  |   Ä   |
-               | TOG 1 |  Y  |  X  |  C   |   V   |   B    |      DEL      |  ■   |    | Encoder / C_MUTE | LAYER 3 / DEL |        N        |   M   |   ,   |  .  |  ß  | CMENU |
+               |  Tab  |  Q  |  W  |  F   |   P   |   V    |                                                              |        Z        |   L   |   U   |  K  |  Ö  |   Ü   |
+               |  ESC  |  A  |  S  |  R   |   T   |   G    |                                                              |        M        |   N   |   E   |  I  |  O  |   Ä   |
+               | TOG 1 |  Y  |  X  |  C   |   D   |   B    |      DEL      |  ■   |    | Encoder / C_MUTE | LAYER 3 / DEL |        J        |   H   |   ,   |  .  |  ß  | CMENU |
                                    | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    |   LGUI / K_APP   |   BACKSPACE   | LAYER 2 / SPACE | RCTRL | LALT  |
             */
             bindings = <
 //┌──────────┬───────────────┬──────────┬──────────┬──────────┬──────────┐                                                                 ┌───────────────┬───────────────┬───────────────┬──────────┬──────────┬────────────────────┐
-//│     TAB  │        Q      │      W   │      F   │      P   │      V   │                                                                 │         Y     │         L     │        U      │      K   │    Ö     │         Ü          │
-    &kp TAB       &kp Q         &kp W      &kp F      &kp P      &kp V                                                                           &kp Y           &kp L          &kp U         &kp K    &kp DE_OE       &kp DE_UE
+//│     TAB  │         Q     │      W   │      F   │      P   │      V   │                                                                 │         Z     │         L     │        U      │      K   │    Ö     │         Ü          │
+    &kp TAB        &kp Q        &kp W      &kp F      &kp P      &kp V                                                                         &kp DE_Z          &kp L          &kp U         &kp K    &kp DE_OE       &kp DE_UE
 //├──────────┼───────────────┼──────────┼──────────┼──────────┼──────────┤                                                                 ├───────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
 //│     ESC  │       LGUI A  │  LALT S  │ LCTRL R  │     1 T  │      G   │                                                                 │         M     │  Layer 1 / N  │       RCTRL E │  LALT I  │  LGUI O  │         Ä          │
     &kp ESC    HRM_L(LGUI A  ,  LALT S  , LCTRL R  ) &lt 1 T     &kp G                                                                           &kp M          &lt 1 N      HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
 //├──────────┼───────────────┼──────────┼──────────┼──────────┼──────────┼───────────────┬──────────┐ ┌────────────────────┬───────────────┼───────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
-//│          │        Z      │      X   │      C   │      D   │      B   │    DELETE     │          │ │  Encoder / C_MUTE  │    DELETE     │         J     │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
-     &tog 1       &kp Z         &kp X      &kp C      &kp D      &kp B        &kp DEL       &none           &kp C_MUTE          &kp DEL          &kp J           &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
+//│          │       Y       │      X   │      C   │      D   │      B   │    DELETE     │          │ │  Encoder / C_MUTE  │    DELETE     │         J     │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
+     &tog 1      &kp DE_Y       &kp X      &kp C      &kp D      &kp B        &kp DEL       &none           &kp C_MUTE          &kp DEL          &kp J           &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
 //└──────────┴───────────────┴──────────┼──────────┼──────────┼──────────┼───────────────┼──────────┤ ├────────────────────┼───────────────┼───────────────┼───────────────┼───────────────┼──────────┴──────────┴────────────────────┘
 //                                      │     LALT │    LCTRL │    LSHIFT│ Layer 1 / RET │     LGUI │ │     LGUI / K_APP   │   BACKSPACE   │LAYER 2 / SPACE│       RCTRL   │       LALT    │
                                           &kp LALT  &kp LCTRL  &kp LSHIFT    &lt 1 RET     &kp LGUI      &mt LGUI K_APP        &kp BSPC       &lt 2 SPACE      &kp RCTRL       &kp LALT
