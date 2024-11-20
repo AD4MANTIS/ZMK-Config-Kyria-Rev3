@@ -269,7 +269,7 @@
     &kp ESC    HRM_L(LGUI A  ,  LALT S  , LCTRL R  ) &lt 1 T     &kp G                                                                           &kp M          &lt 1 N      HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
 //├──────────┼───────────────┼──────────┼──────────┼──────────┼──────────┼───────────────┬──────────┐ ┌────────────────────┬───────────────┼───────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
 //│          │       Y       │      X   │      C   │      D   │      B   │    DELETE     │          │ │  Encoder / C_MUTE  │    DELETE     │         J     │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
-     &tog 1      &kp DE_Y       &kp X      &kp C      &kp D      &kp B        &kp DEL       &none           &kp C_MUTE          &kp DEL          &kp J           &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
+     &kp N0      &kp DE_Y       &kp X      &kp C      &kp D      &kp B        &kp DEL       &none           &kp C_MUTE          &kp DEL          &kp J           &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
 //└──────────┴───────────────┴──────────┼──────────┼──────────┼──────────┼───────────────┼──────────┤ ├────────────────────┼───────────────┼───────────────┼───────────────┼───────────────┼──────────┴──────────┴────────────────────┘
 //                                      │     LALT │    LCTRL │    LSHIFT│ Layer 1 / RET │     LGUI │ │     LGUI / K_APP   │   BACKSPACE   │LAYER 2 / SPACE│       RCTRL   │       LALT    │
                                           &kp LALT  &kp LCTRL  &kp LSHIFT    &lt 1 RET     &kp LGUI      &mt LGUI K_APP        &kp BSPC       &lt 2 SPACE      &kp RCTRL       &kp LALT
