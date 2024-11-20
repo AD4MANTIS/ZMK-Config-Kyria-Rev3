@@ -241,26 +241,22 @@
 };
 
 // Layers
-namespace Layer {
-    constexpr uint8_t Windows 0;
-    constexpr uint8_t Lower 1;
-    constexpr uint8_t Mac_Symbol 2;
-    constexpr uint8_t Win_Symbol 3;
-    constexpr uint8_t Function 4;
-};
-
-using namespace Layer; 
+#define WINDOWS 0;
+#define LOWER 1;
+#define MAC_SYMBOL 2;
+#define WIN_SYMBOL 3;
+#define FUNCTION 4;
 
 / {
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <Layer::Lower Layer::Win_Symbol>;
-            then-layer = <Layer::Function>;
+            if-layers = <LOWER WIN_SYMBOL>;
+            then-layer = <FUNCTION>;
         };
         tri_layer_mac {
-            if-layers = <Layer::Lower Layer::Mac_Symbol>;
-            then-layer = <Layer::Function>;
+            if-layers = <LOWER MAC_SYMBOL>;
+            then-layer = <FUNCTION>;
         };
     };
 };
@@ -282,13 +278,13 @@ using namespace Layer;
     &kp TAB             &kp Q        &kp W      &kp F      &kp P           &kp V                                                                                &kp DE_Z             &kp L          &kp U         &kp K    &kp DE_OE       &kp DE_UE
 //├───────────────┼───────────────┼──────────┼──────────┼───────────────┼──────────┤                                                                      ├────────────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
 //│     ESC       │       LGUI A  │  LALT S  │ LCTRL R  │               │      G   │                                                                      │         M          │               │       RCTRL E │  LALT I  │  LGUI O  │         Ä          │
-    &kp ESC         HRM_L(LGUI A  ,  LALT S  , LCTRL R  )  &lt Lower T     &kp G                                                                                &kp M             &lt Lower N    HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
+    &kp ESC         HRM_L(LGUI A  ,  LALT S  , LCTRL R  )  &lt LOWER T     &kp G                                                                                &kp M             &lt LOWER N    HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
 //├───────────────┼───────────────┼──────────┼──────────┼───────────────┼──────────┼────────────────────┬──────────┐ ┌────────────────────┬───────────────┼────────────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
 //│               │       Y       │      X   │      C   │      D        │      B   │    DELETE          │          │ │  Encoder / C_MUTE  │    DELETE     │         J          │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
-   &tog Mac_Symbol    &kp DE_Y       &kp X      &kp C      &kp D           &kp B        &kp DEL            &none           &kp C_MUTE          &kp DEL          &kp J                &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
+   &tog LOWER         &kp DE_Y       &kp X      &kp C      &kp D           &kp B        &kp DEL            &none           &kp C_MUTE          &kp DEL          &kp J                &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
 //└───────────────┴───────────────┴──────────┼──────────┼───────────────┼──────────┼────────────────────┼──────────┤ ├────────────────────┼───────────────┼────────────────────┼───────────────┼───────────────┼──────────┴──────────┴────────────────────┘
 //                                           │     LALT │      LCTRL    │    LSHIFT│ Layer Lower / RET  │     LGUI │ │     LGUI / K_APP   │   BACKSPACE   │  LAYER 2 / SPACE   │       RCTRL   │       LALT    │
-                                               &kp LALT    &kp LCTRL     &kp LSHIFT    &lt Lower RET      &kp LGUI      &mt LGUI K_APP        &kp BSPC     &lt Mac_Symbol SPACE    &kp RCTRL       &kp LALT
+                                               &kp LALT    &kp LCTRL     &kp LSHIFT    &lt LOWER RET      &kp LGUI      &mt LGUI K_APP        &kp BSPC     &lt MAC_SYMBOL SPACE    &kp RCTRL       &kp LALT
 //                                           └──────────┴───────────────┴──────────┴────────────────────┴──────────┘ └────────────────────┴───────────────┴────────────────────┴───────────────┴───────────────┘
             >;
 
@@ -304,9 +300,9 @@ using namespace Layer;
 //├───────────────┬──────────┬──────────┬──────────┬──────────┬──────────┤                                             ├────────────────────┬──────────┬──────────┬──────────┬──────────┬──────────┤
        &trans        &trans     &trans     &trans     &trans     &trans                                                        &trans          &trans     &trans     &trans     &trans     &trans
 //├───────────────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┬──────────┐ ┌──────────┬──────────┼────────────────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-   &tog Win_Symbol   &trans     &trans     &trans     &trans     &trans     &trans     &trans       &trans     &trans          &trans          &trans     &trans     &trans     &trans     &trans
+   &tog LOWER        &trans     &trans     &trans     &trans     &trans     &trans     &trans       &trans     &trans          &trans          &trans     &trans     &trans     &trans     &trans
 //└───────────────┴──────────┴──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤ ├──────────┼──────────┼────────────────────┼──────────┼──────────┼──────────┴──────────┴──────────┘
-                                           &trans     &trans     &trans     &trans     &trans       &trans     &trans   &lt Win_Symbol SPACE   &trans     &trans
+                                           &trans     &trans     &trans     &trans     &trans       &trans     &trans   &lt WIN_SYMBOL SPACE   &trans     &trans
 //                                      └──────────┴──────────┴──────────┴──────────┴──────────┘ └──────────┴──────────┴────────────────────┴──────────┴──────────┘
             >;
 
@@ -353,10 +349,10 @@ using namespace Layer;
      &trans         &kp KP_MULTIPLY       &kp KP_PLUS          &kp KP_MINUS         &kp DE_OSX_EQUAL    &kp DE_OSX_HASH                                           &kp DE_OSX_BACKSLASH    &kp KP_SLASH                &kp DE_OSX_DOUBLE_QUOTES  &kp DE_OSX_APOSTROPHE      &GER_GRAVE_RIGHT     &GER_GRAVE_LEFT
 //├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤                                     ├────────────────────┼──────────────────────────────┼─────────────────────────┼─────────────────────────┼────────────────────┼────────────────────┤
 //│      ~        │     _              │      :             │    ;               │     ?              │    !               │                                     │      $             │      (                       │    {                    │    [                    │ <                  │   °                │
-  &kp DE_OSX_TILDE &kp DE_OSX_UNDERSCORE  &kp DE_OSX_COLON   &kp DE_OSX_SEMICOLON  &kp DE_OSX_QUESTION &kp DE_OSX_EXCLAMATION                                       &kp DE_OSX_DOLLAR  &kp DE_OSX_LEFT_PARENTHESIS    &kp DE_OSX_LEFT_BRACE     &kp DE_OSX_LEFT_BRACKET    &kp DE_OSX_LESS_THAN  &kp DE_OSX_DEGREE
+     &trans        &kp DE_OSX_UNDERSCORE  &kp DE_OSX_COLON   &kp DE_OSX_SEMICOLON  &kp DE_OSX_QUESTION &kp DE_OSX_EXCLAMATION                                       &kp DE_OSX_DOLLAR  &kp DE_OSX_LEFT_PARENTHESIS    &kp DE_OSX_LEFT_BRACE     &kp DE_OSX_LEFT_BRACKET    &kp DE_OSX_LESS_THAN  &kp DE_OSX_DEGREE
 //├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┬────────┐ ┌────────┬────────┼────────────────────┼──────────────────────────────┼─────────────────────────┼─────────────────────────┼────────────────────┼────────────────────┤
 //│               │     ^              │    &               │      |             │     %              │     @              │                                     │      €             │      )                       │    }                    │    ]                    │ >                  │   §                │
-   &tog Mac_Symbol     &GER_CARET       &kp DE_OSX_AMPERSAND   &kp DE_OSX_PIPE     &kp DE_OSX_PERCENT   &kp DE_OSX_AT_SIGN   &trans   &none      &none    &trans    &kp DE_OSX_EURO    &kp DE_OSX_RIGHT_PARENTHESIS   &kp DE_OSX_RIGHT_BRACET   &kp DE_OSX_RIGHT_BRACKET  &kp DE_OSX_GREATER_THAN &kp DE_OSX_SECTION
+  &kp DE_OSX_TILDE     &GER_CARET       &kp DE_OSX_AMPERSAND   &kp DE_OSX_PIPE     &kp DE_OSX_PERCENT   &kp DE_OSX_AT_SIGN   &trans   &none      &none    &trans    &kp DE_OSX_EURO    &kp DE_OSX_RIGHT_PARENTHESIS   &kp DE_OSX_RIGHT_BRACET   &kp DE_OSX_RIGHT_BRACKET  &kp DE_OSX_GREATER_THAN &kp DE_OSX_SECTION
 //└───────────────┴────────────────────┴────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┼────────┤ ├────────┼────────┼────────────────────┼──────────────────────────────┼─────────────────────────┼─────────────────────────┴────────────────────┴────────────────────┘
                                                                &trans               &trans              &trans               &trans   &trans     &trans   &trans    &trans              &trans                        &trans
 //                                                          └────────────────────┴────────────────────┴────────────────────┴────────┴────────┘ └────────┴────────┴────────────────────┴──────────────────────────────┴─────────────────────────┘
@@ -375,10 +371,10 @@ using namespace Layer;
      &trans         &kp KP_MULTIPLY       &kp KP_PLUS          &kp KP_MINUS         &kp DE_EQUAL        &kp DE_HASH                                                 &kp DE_BACKSLASH    &kp KP_SLASH             &kp DE_DOUBLE_QUOTES &kp DE_APOSTROPHE    &GER_GRAVE_RIGHT       &GER_GRAVE_LEFT
 //├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤                                     ├────────────────────┼─────────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
 //│      ~        │     _              │      :             │      ;             │      ?             │     !              │                                     │      $             │      (                  │    {               │    [               │ <                  │   °                │
-     &kp DE_TILDE   &kp DE_UNDERSCORE     &kp DE_COLON         &kp DE_SEMICOLON     &kp DE_QUESTION     &kp DE_EXCLAMATION                                          &kp DE_DOLLAR       &kp DE_LEFT_PARENTHESIS  &kp DE_LEFT_BRACE    &kp DE_LEFT_BRACKET  &kp DE_LESS_THAN       &kp DE_DEGREE
+     &trans         &kp DE_UNDERSCORE     &kp DE_COLON         &kp DE_SEMICOLON     &kp DE_QUESTION     &kp DE_EXCLAMATION                                          &kp DE_DOLLAR       &kp DE_LEFT_PARENTHESIS  &kp DE_LEFT_BRACE    &kp DE_LEFT_BRACKET  &kp DE_LESS_THAN       &kp DE_DEGREE
 //├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┬────────┐ ┌────────┬────────┼────────────────────┼─────────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
 //│               │     ^              │      &             │      |             │      %             │     @              │                                     │      €             │      )                  │    }               │    ]               │ >                  │   §                │
-   &tog Win_Symbol     &GER_CARET         &kp DE_AMPERSAND     &kp DE_PIPE          &kp DE_PERCENT      &kp DE_AT_SIGN       &trans   &none      &none    &trans    &kp DE_EURO         &kp DE_RIGHT_PARENTHESIS &kp DE_RIGHT_BRACE   &kp DE_RIGHT_BRACKET &kp DE_GREATER_THAN    &kp DE_SECTION
+    &kp DE_TILDE       &GER_CARET         &kp DE_AMPERSAND     &kp DE_PIPE          &kp DE_PERCENT      &kp DE_AT_SIGN       &trans   &none      &none    &trans    &kp DE_EURO         &kp DE_RIGHT_PARENTHESIS &kp DE_RIGHT_BRACE   &kp DE_RIGHT_BRACKET &kp DE_GREATER_THAN    &kp DE_SECTION
 //└───────────────┴────────────────────┴────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┼────────┤ ├────────┼────────┼────────────────────┼─────────────────────────┼────────────────────┼────────────────────┴────────────────────┴────────────────────┘
                                                                &trans               &trans              &trans               &trans   &trans     &trans   &trans    &trans              &trans                   &trans
 //                                                          └────────────────────┴────────────────────┴────────────────────┴────────┴────────┘ └────────┴────────┴────────────────────┴─────────────────────────┴────────────────────┘
@@ -392,17 +388,17 @@ using namespace Layer;
                |      |      |      |            |      |      |    |       |       |       |       |       |       |
             */
             bindings = <
-//┌──────────┬───────────────┬───────────────┬────────────────────┬───────────────┬───────────────┐                                     ┌────────────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────┐
-//│          │               │               │                    │               │               │                                     │ Underglow tog      │Bright increase│  Sat increase │  Hue increase │Speed increase │Effect forward │
-   &bt BT_CLR  &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2         &bt BT_SEL 3    &bt BT_SEL 4                                           RGB_UG(TOG)          RGB_UG(BRI)     RGB_UG(SAI)     RGB_UG(HUI)     RGB_UG(SPI)     RGB_UG(EFF)
-//├──────────┼───────────────┼───────────────┼────────────────────┼───────────────┼───────────────┤                                     ├────────────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-//│          │               │       ⏮︎       │         ⏯︎          │     ⏭︎         │               │                                     │Toggle Windows Layer│Bright decrease│  Sat decrease │  Hue decrease │Speed increase │Effect reverse │
-   &none       &none           &kp C_PREV      &kp C_PLAY_PAUSE     &kp C_NEXT      &none                                                &tog Layer::Windows    RGB_UG(BRD)     RGB_UG(SAD)     RGB_UG(HUD)     RGB_UG(SPD)     RGB_UG(EFR)
-//├──────────┼───────────────┼───────────────┼────────────────────┼───────────────┼───────────────┼────────┬────────┐ ┌────────┬────────┼────────────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-   &none       &none           &none           &none                &none           &none           &none    &none      &none    &none     &none                &none           &none           &none           &none           &none 
-//└──────────┴───────────────┴───────────────┼────────────────────┼───────────────┼───────────────┼────────┼────────┤ ├────────┼────────┼────────────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────┘
-                                               &none                &none           &none           &none    &none      &none    &none     &none                &none           &none 
-//                                           └────────────────────┴───────────────┴───────────────┴────────┴────────┘ └────────┴────────┴────────────────────┴───────────────┴───────────────┘
+//┌──────────┬───────────────┬───────────────┬────────────────────┬───────────────┬───────────────┐                                     ┌───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────┐
+//│          │               │               │                    │               │               │                                     │ Underglow tog │Bright increase│  Sat increase │  Hue increase │Speed increase │Effect forward │
+   &bt BT_CLR  &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2         &bt BT_SEL 3    &bt BT_SEL 4                                           RGB_UG(TOG)     RGB_UG(BRI)     RGB_UG(SAI)     RGB_UG(HUI)     RGB_UG(SPI)     RGB_UG(EFF)
+//├──────────┼───────────────┼───────────────┼────────────────────┼───────────────┼───────────────┤                                     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+//│          │               │       ⏮︎       │         ⏯︎          │     ⏭︎         │               │                                     │               │Bright decrease│  Sat decrease │  Hue decrease │Speed increase │Effect reverse │
+   &none       &none           &kp C_PREV      &kp C_PLAY_PAUSE     &kp C_NEXT      &none                                                  &tog WINDOWS    RGB_UG(BRD)     RGB_UG(SAD)     RGB_UG(HUD)     RGB_UG(SPD)     RGB_UG(EFR)
+//├──────────┼───────────────┼───────────────┼────────────────────┼───────────────┼───────────────┼────────┬────────┐ ┌────────┬────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+   &none       &none           &none           &none                &none           &none           &none    &none      &none    &none     &none           &none           &none           &none           &none           &none 
+//└──────────┴───────────────┴───────────────┼────────────────────┼───────────────┼───────────────┼────────┼────────┤ ├────────┼────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────┘
+                                               &none                &none           &none           &none    &none      &none    &none     &none           &none           &none 
+//                                           └────────────────────┴───────────────┴───────────────┴────────┴────────┘ └────────┴────────┴───────────────┴───────────────┴───────────────┘
             >;
 
             sensor-bindings =
