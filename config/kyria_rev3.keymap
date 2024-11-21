@@ -237,6 +237,13 @@
         ZMK_MACRO(NAVIGATE_FORWARD,
             bindings = <&kp LC(LS(DE_MINUS))>;
         )
+
+        TD_PLAY_SKIP: TD_PLAY_SKIP {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp C_PLAY_PAUSE>, <&kp C_NEXT>;
+        };
     };
 };
 
@@ -269,7 +276,7 @@
             /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
                |   Tab   |  Q  |  W  |  F   |   P   |   V    |                                                              |        Z        |   L   |   U   |  K  |  Ö  |   Ü   |
                |   ESC   |  A  |  S  |  R   |   T   |   G    |                                                              |        M        |   N   |   E   |  I  |  O  |   Ä   |
-               | TOG Sym |  Y  |  X  |  C   |   D   |   B    |      DEL      |  ■   |    | Encoder / C_MUTE | LAYER 3 / DEL |        J        |   H   |   ,   |  .  |  ß  | CMENU |
+               | TOG Sym |  Y  |  X  |  C   |   D   |   B    |      DEL      |     |    | Encoder / C_MUTE | LAYER 3 / DEL |        J        |   H   |   ,   |  .  |  ß  | CMENU |
                                      | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    |   LGUI / K_APP   |   BACKSPACE   | LAYER 2 / SPACE | RCTRL | LALT  |
             */
             bindings = <
@@ -279,13 +286,13 @@
 //├───────────────┼───────────────┼──────────┼──────────┼───────────────┼──────────┤                                                                      ├────────────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
 //│     ESC       │       LGUI A  │  LALT S  │ LCTRL R  │               │      G   │                                                                      │         M          │               │       RCTRL E │  LALT I  │  LGUI O  │         Ä          │
     &kp ESC         HRM_L(LGUI A  ,  LALT S  , LCTRL R  )  &lt LOWER T     &kp G                                                                                &kp M             &lt LOWER N    HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
-//├───────────────┼───────────────┼──────────┼──────────┼───────────────┼──────────┼────────────────────┬──────────┐ ┌────────────────────┬───────────────┼────────────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
-//│               │       Y       │      X   │      C   │      D        │      B   │    DELETE          │          │ │  Encoder / C_MUTE  │    DELETE     │         J          │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
-   &tog LOWER         &kp DE_Y       &kp X      &kp C      &kp D           &kp B        &kp DEL            &none           &kp C_MUTE          &kp DEL          &kp J                &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
-//└───────────────┴───────────────┴──────────┼──────────┼───────────────┼──────────┼────────────────────┼──────────┤ ├────────────────────┼───────────────┼────────────────────┼───────────────┼───────────────┼──────────┴──────────┴────────────────────┘
-//                                           │     LALT │      LCTRL    │    LSHIFT│ Layer Lower / RET  │     LGUI │ │     LGUI / K_APP   │   BACKSPACE   │  LAYER 2 / SPACE   │       RCTRL   │       LALT    │
-                                               &kp LALT    &kp LCTRL     &kp LSHIFT    &lt LOWER RET      &kp LGUI      &mt LGUI K_APP        &kp BSPC     &lt MAC_SYMBOL SPACE    &kp RCTRL       &kp LALT
-//                                           └──────────┴───────────────┴──────────┴────────────────────┴──────────┘ └────────────────────┴───────────────┴────────────────────┴───────────────┴───────────────┘
+//├───────────────┼───────────────┼──────────┼──────────┼───────────────┼──────────┼────────────────────┬───────────────┐ ┌────────────────────┬───────────────┼────────────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
+//│               │       Y       │      X   │      C   │      D        │      B   │    DELETE          │  Play / Skip  │ │  Encoder / C_MUTE  │    DELETE     │         J          │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
+   &tog LOWER         &kp DE_Y       &kp X      &kp C      &kp D           &kp B        &kp DEL           &td_play_skip         &kp C_MUTE          &kp DEL          &kp J                &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
+//└───────────────┴───────────────┴──────────┼──────────┼───────────────┼──────────┼────────────────────┼───────────────┤ ├────────────────────┼───────────────┼────────────────────┼───────────────┼───────────────┼──────────┴──────────┴────────────────────┘
+//                                           │     LALT │      LCTRL    │    LSHIFT│ Layer Lower / RET  │     LGUI      │ │     LGUI / K_APP   │   BACKSPACE   │  LAYER 2 / SPACE   │       RCTRL   │       LALT    │
+                                               &kp LALT    &kp LCTRL     &kp LSHIFT    &lt LOWER RET      &kp LGUI            &mt LGUI K_APP       &kp BSPC     &lt MAC_SYMBOL SPACE    &kp RCTRL       &kp LALT
+//                                           └──────────┴───────────────┴──────────┴────────────────────┴───────────────┘ └────────────────────┴───────────────┴────────────────────┴───────────────┴───────────────┘
             >;
 
             sensor-bindings =
