@@ -194,29 +194,21 @@
     macros {
         // ^
         ZMK_MACRO(GER_CARET,
-            bindings
-                = <&kp DE_CARET>
-                , <&kp SPACE>;
+            bindings = <&kp DE_CARET>, <&kp SPACE>;
         );
 
         ZMK_MACRO(GER_OSX_CARET,
-            bindings
-                = <&kp DE_OSX_CARET>
-                , <&kp SPACE>;
+            bindings = <&kp DE_OSX_CARET>, <&kp SPACE>;
         );
 
         // `
         ZMK_MACRO(GER_GRAVE,
-            bindings
-                = <&kp DE_GRAVE>
-                , <&kp SPACE>;
+            bindings = <&kp DE_GRAVE>, <&kp SPACE>;
         );
 
         // ´
         ZMK_MACRO(GER_ACUTE,
-            bindings
-                = <&kp DE_ACUTE>
-                , <&kp SPACE>;
+            bindings = <&kp DE_ACUTE>, <&kp SPACE>;
         );
 
         ZMK_MACRO(PREV_TAB,
