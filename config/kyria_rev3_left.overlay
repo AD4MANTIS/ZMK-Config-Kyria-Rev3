@@ -9,14 +9,21 @@
     layer_state {
         default_mac_layer {
             underglow {
-                color = <0x00 0x00 0xFF>; /* Default: Blue */
-                effect = "swirl";         /* Default effect */
+                color = <0x00 0x00 0xFF>; /* Default Mac layer: Blue */
+                effect = "breathe";      /* Breathing effect */
+            };
+        };
+
+        default_windows_layer {
+            underglow {
+                color = <0x00 0xFF 0x00>; /* Default Windows layer: Green */
+                effect = "breathe";       /* Breathing effect */
             };
         };
 
         lower_layer {
             underglow {
-                color = <0xFF 0x00 0x00>; /* Layer 1: Red */
+                color = <0xFF 0x00 0x00>; /* Lower layer: Red */
                 effect = "solid";         /* Solid effect */
             };
         };
