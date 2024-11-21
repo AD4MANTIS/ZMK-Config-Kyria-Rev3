@@ -3,29 +3,7 @@
         compatible = "zmk,underglow";
         label = "UNDERGLOW";
         chain-length = <6>;
-        color = <0x00 0x00 0xFF>; /* Default color (blue) */
-    };
-
-    layer_state {
-        default_mac_layer {
-            underglow {
-                color = <0x00 0x00 0xFF>; /* Default Mac layer: Blue */
-                effect = "breathe";      /* Breathing effect */
-            };
-        };
-
-        default_windows_layer {
-            underglow {
-                color = <0x00 0xFF 0x00>; /* Default Windows layer: Green */
-                effect = "breathe";       /* Breathing effect */
-            };
-        };
-
-        lower_layer {
-            underglow {
-                color = <0xFF 0x00 0x00>; /* Lower layer: Red */
-                effect = "solid";         /* Solid effect */
-            };
-        };
+        color = <0x00 0xFF 0x00>; /* Green */
+        effect = "solid";
     };
 };
