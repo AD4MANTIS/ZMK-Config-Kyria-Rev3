@@ -241,22 +241,22 @@
 };
 
 // Layers
-#define WINDOWS 0;
-#define LOWER 1;
-#define MAC_SYMBOL 2;
-#define WIN_SYMBOL 3;
-#define FUNCTION 4;
+#define WINDOWS 0
+#define LOWER 1
+#define MAC_SYMBOL 2
+#define WIN_SYMBOL 3
+#define FUNCTION 4
 
 / {
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <(LOWER) (WIN_SYMBOL)>;
-            then-layer = <(FUNCTION)>;
+            if-layers = <LOWER WIN_SYMBOL>;
+            then-layer = <FUNCTION>;
         };
         tri_layer_mac {
-            if-layers = <(LOWER) (MAC_SYMBOL)>;
-            then-layer = <(FUNCTION)>;
+            if-layers = <LOWER MAC_SYMBOL>;
+            then-layer = <FUNCTION>;
         };
     };
 };
