@@ -1,6 +1,6 @@
 / {
     led_strip {
-        compatible = "zmk,underglow";
+        compatible = "zmk,rgb-underglow";
         label = "UNDERGLOW";
         chain-length = <6>;
         color = <0x00 0xFF 0x00>; /* Green */
