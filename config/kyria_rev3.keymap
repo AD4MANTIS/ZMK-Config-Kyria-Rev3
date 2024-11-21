@@ -248,11 +248,12 @@
 };
 
 // Layers
-#define WINDOWS 0
-#define LOWER 1
-#define MAC_SYMBOL 2
-#define WIN_SYMBOL 3
-#define FUNCTION 4
+#define MAC 0
+#define WINDOWS 1
+#define LOWER 2
+#define MAC_SYMBOL 3
+#define WIN_SYMBOL 4
+#define FUNCTION 5
 
 / {
     conditional_layers {
@@ -307,7 +308,7 @@
 //├───────────────┬──────────┬──────────┬──────────┬──────────┬──────────┤                                             ├────────────────────┬──────────┬──────────┬──────────┬──────────┬──────────┤
        &trans        &trans     &trans     &trans     &trans     &trans                                                        &trans          &trans     &trans     &trans     &trans     &trans
 //├───────────────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┬──────────┐ ┌──────────┬──────────┼────────────────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
-   &tog LOWER        &trans     &trans     &trans     &trans     &trans     &trans     &trans       &trans     &trans          &trans          &trans     &trans     &trans     &trans     &trans
+       &trans        &trans     &trans     &trans     &trans     &trans     &trans     &trans       &trans     &trans          &trans          &trans     &trans     &trans     &trans     &trans
 //└───────────────┴──────────┴──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤ ├──────────┼──────────┼────────────────────┼──────────┼──────────┼──────────┴──────────┴──────────┘
                                            &trans     &trans     &trans     &trans     &trans       &trans     &trans   &lt WIN_SYMBOL SPACE   &trans     &trans
 //                                      └──────────┴──────────┴──────────┴──────────┴──────────┘ └──────────┴──────────┴────────────────────┴──────────┴──────────┘
