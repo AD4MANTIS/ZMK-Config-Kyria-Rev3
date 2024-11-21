@@ -20,5 +20,7 @@
 include:
   - board: nice_nano_v2
     shield: kyria_rev3_left 
+    cmake-args: -DOVERLAY_CONFIG=kyria_rev3_left.overlay
   - board: nice_nano_v2
     shield: kyria_rev3_right 
+    cmake-args: -DOVERLAY_CONFIG=kyria_rev3_right.overlay
