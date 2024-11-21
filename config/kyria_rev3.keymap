@@ -276,16 +276,16 @@
             /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
                |   Tab   |  Q  |  W  |  F   |   P   |   V    |                                                              |        Z        |   L   |   U   |  K  |  Ö  |   Ü   |
                |   ESC   |  A  |  S  |  R   |   T   |   G    |                                                              |        M        |   N   |   E   |  I  |  O  |   Ä   |
-               | TOG Sym |  Y  |  X  |  C   |   D   |   B    |      DEL      |     |    | Encoder / C_MUTE | LAYER 3 / DEL |        J        |   H   |   ,   |  .  |  ß  | CMENU |
-                                     | LALT | LCTRL | LSHIFT | Layer 1 / RET | LGUI |    |   LGUI / K_APP   |   BACKSPACE   | LAYER 2 / SPACE | RCTRL | LALT  |
+               | TOG Sym |  Y  |  X  |  C   |   D   |   B    |      DEL      | PLAY_PAUSE / NEXT |    | Encoder / C_MUTE | LAYER 3 / DEL |        J        |   H   |   ,   |  .  |  ß  | CMENU |
+                                     | LALT | LCTRL | LSHIFT | Layer 1 / RET |       LGUI        |    |   LGUI / K_APP   |   BACKSPACE   | LAYER 2 / SPACE | RCTRL | LALT  |
             */
             bindings = <
-//┌───────────────┬───────────────┬──────────┬──────────┬───────────────┬──────────┐                                                                      ┌────────────────────┬───────────────┬───────────────┬──────────┬──────────┬────────────────────┐
-//│     TAB       │         Q     │      W   │      F   │      P        │      V   │                                                                      │         Z          │         L     │        U      │      K   │    Ö     │         Ü          │
-    &kp TAB             &kp Q        &kp W      &kp F      &kp P           &kp V                                                                                &kp DE_Z             &kp L          &kp U         &kp K    &kp DE_OE       &kp DE_UE
-//├───────────────┼───────────────┼──────────┼──────────┼───────────────┼──────────┤                                                                      ├────────────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
-//│     ESC       │       LGUI A  │  LALT S  │ LCTRL R  │               │      G   │                                                                      │         M          │               │       RCTRL E │  LALT I  │  LGUI O  │         Ä          │
-    &kp ESC         HRM_L(LGUI A  ,  LALT S  , LCTRL R  )  &lt LOWER T     &kp G                                                                                &kp M             &lt LOWER N    HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
+//┌───────────────┬───────────────┬──────────┬──────────┬───────────────┬──────────┐                                                                           ┌────────────────────┬───────────────┬───────────────┬──────────┬──────────┬────────────────────┐
+//│     TAB       │         Q     │      W   │      F   │      P        │      V   │                                                                           │         Z          │         L     │        U      │      K   │    Ö     │         Ü          │
+    &kp TAB             &kp Q        &kp W      &kp F      &kp P           &kp V                                                                                     &kp DE_Z             &kp L          &kp U         &kp K    &kp DE_OE       &kp DE_UE
+//├───────────────┼───────────────┼──────────┼──────────┼───────────────┼──────────┤                                                                           ├────────────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
+//│     ESC       │       LGUI A  │  LALT S  │ LCTRL R  │               │      G   │                                                                           │         M          │               │       RCTRL E │  LALT I  │  LGUI O  │         Ä          │
+    &kp ESC         HRM_L(LGUI A  ,  LALT S  , LCTRL R  )  &lt LOWER T     &kp G                                                                                     &kp M             &lt LOWER N    HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
 //├───────────────┼───────────────┼──────────┼──────────┼───────────────┼──────────┼────────────────────┬───────────────┐ ┌────────────────────┬───────────────┼────────────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
 //│               │       Y       │      X   │      C   │      D        │      B   │    DELETE          │  Play / Skip  │ │  Encoder / C_MUTE  │    DELETE     │         J          │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
    &tog LOWER         &kp DE_Y       &kp X      &kp C      &kp D           &kp B        &kp DEL           &td_play_skip         &kp C_MUTE          &kp DEL          &kp J                &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
@@ -326,8 +326,8 @@
             */
             bindings = <
 //┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                                      ┌──────────┬──────────┬──────────┬──────────┬───────────────┬────────────────────┐
-//│          │      F1  │      F2  │      F3  │      F4  │      F5  │                                      │      F9  │     F10  │     F11  │     F12  │  PREV_TAB     │                    │
-     &trans     &kp F1     &kp F2     &kp F3     &kp F4     &kp F5                                            &kp F9    &kp F10    &kp F11    &kp F12    &PREV_TAB       &none
+//│          │      F1  │      F2  │      F3  │      F4  │      F5  │                                      │      F9  │     F10  │     F11  │     F12  │    PREV_TAB   │                    │
+     &trans     &kp F1     &kp F2     &kp F3     &kp F4     &kp F5                                            &kp F9    &kp F10    &kp F11    &kp F12      &PREV_TAB     &none
 //├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                                      ├──────────┼──────────┼──────────┼──────────┼───────────────┼────────────────────┤
 //│       0  │       1  │       2  │       3  │       4  │       5  │                                      │     LEFT │     DOWN │      UP  │    RIGHT │ NAVIGATE_BACK │  NAVIGATE_FORWARD  │
      &kp N0     &kp N1     &kp N2     &kp N3     &kp N4     &kp N5                                           &kp LEFT   &kp DOWN    &kp UP   &kp RIGHT  &NAVIGATE_BACK   &NAVIGATE_FORWARD
