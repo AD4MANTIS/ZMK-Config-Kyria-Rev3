@@ -251,12 +251,12 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
-            if-layers = <LOWER WIN_SYMBOL>;
-            then-layer = <FUNCTION>;
+            if-layers = <(LOWER) (WIN_SYMBOL)>;
+            then-layer = <(FUNCTION)>;
         };
         tri_layer_mac {
-            if-layers = <LOWER MAC_SYMBOL>;
-            then-layer = <FUNCTION>;
+            if-layers = <(LOWER) (MAC_SYMBOL)>;
+            then-layer = <(FUNCTION)>;
         };
     };
 };
