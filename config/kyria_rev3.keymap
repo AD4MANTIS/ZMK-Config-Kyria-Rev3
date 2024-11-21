@@ -273,7 +273,7 @@
     keymap {
         compatible = "zmk,keymap";
 
-            default_mac_layer {
+        default_mac_layer {
             /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
                |   Tab   |  Q  |  W  |  F   |   P   |   V    |                                                              |        Z        |   L   |   U   |  K  |  Ö  |   Ü   |
                |   ESC   |  A  |  S  |  R   |   T   |   G    |                                                              |        M        |   N   |   E   |  I  |  O  |   Ä   |
@@ -353,8 +353,8 @@
             */
             bindings = <
 //┌───────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┐                                     ┌────────────────────┬──────────────────────────────┬─────────────────────────┬─────────────────────────┬────────────────────┬────────────────────┐
-//│               │     *              │      +             │      -             │      =             │     #              │                                     │      \             │      /                       │    "                    │    '                    │ `                  │   ´                │
-     &trans         &kp KP_MULTIPLY       &kp KP_PLUS          &kp KP_MINUS         &kp DE_OSX_EQUAL    &kp DE_OSX_HASH                                           &kp DE_OSX_BACKSLASH    &kp KP_SLASH                &kp DE_OSX_DOUBLE_QUOTES  &kp DE_OSX_APOSTROPHE      &GER_GRAVE_RIGHT     &GER_GRAVE_LEFT
+//│               │     *              │      +             │      -             │      =             │     #              │                                     │      \             │       /                      │    "                    │    '                    │ `                  │   ´                │
+     &trans         &kp KP_MULTIPLY       &kp KP_PLUS          &kp KP_MINUS         &kp DE_OSX_EQUAL    &kp DE_OSX_HASH                                           &kp DE_OSX_BACKSLASH    &kp DE_OSX_SLASH            &kp DE_OSX_DOUBLE_QUOTES  &kp DE_OSX_APOSTROPHE      &GER_GRAVE_RIGHT     &GER_GRAVE_LEFT
 //├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤                                     ├────────────────────┼──────────────────────────────┼─────────────────────────┼─────────────────────────┼────────────────────┼────────────────────┤
 //│      ~        │     _              │      :             │    ;               │     ?              │    !               │                                     │      $             │      (                       │    {                    │    [                    │ <                  │   °                │
      &trans        &kp DE_OSX_UNDERSCORE  &kp DE_OSX_COLON   &kp DE_OSX_SEMICOLON  &kp DE_OSX_QUESTION &kp DE_OSX_EXCLAMATION                                       &kp DE_OSX_DOLLAR  &kp DE_OSX_LEFT_PARENTHESIS    &kp DE_OSX_LEFT_BRACE     &kp DE_OSX_LEFT_BRACKET    &kp DE_OSX_LESS_THAN  &kp DE_OSX_DEGREE
@@ -375,13 +375,13 @@
             */
             bindings = <
 //┌───────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┐                                     ┌────────────────────┬─────────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┐
-//│               │     *              │      +             │      -             │      =             │     #              │                                     │      \             │      /                  │    "               │    '               │ `                  │   ´                │
-     &trans         &kp KP_MULTIPLY       &kp KP_PLUS          &kp KP_MINUS         &kp DE_EQUAL        &kp DE_HASH                                                 &kp DE_BACKSLASH    &kp KP_SLASH             &kp DE_DOUBLE_QUOTES &kp DE_APOSTROPHE    &GER_GRAVE_RIGHT       &GER_GRAVE_LEFT
+//│               │     *              │      +             │      -             │      =             │     #              │                                     │      \             │     /                   │    "               │    '               │ `                  │   ´                │
+     &trans         &kp KP_MULTIPLY       &kp KP_PLUS          &kp KP_MINUS         &kp DE_EQUAL        &kp DE_HASH                                                 &kp DE_BACKSLASH    &kp DE_SLASH             &kp DE_DOUBLE_QUOTES &kp DE_APOSTROPHE    &GER_GRAVE_RIGHT       &GER_GRAVE_LEFT
 //├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤                                     ├────────────────────┼─────────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
-//│      ~        │     _              │      :             │      ;             │      ?             │     !              │                                     │      $             │      (                  │    {               │    [               │ <                  │   °                │
+//│      ~        │     _              │      :             │      ;             │      ?             │     !              │                                     │      $             │     (                   │    {               │    [               │ <                  │   °                │
      &trans         &kp DE_UNDERSCORE     &kp DE_COLON         &kp DE_SEMICOLON     &kp DE_QUESTION     &kp DE_EXCLAMATION                                          &kp DE_DOLLAR       &kp DE_LEFT_PARENTHESIS  &kp DE_LEFT_BRACE    &kp DE_LEFT_BRACKET  &kp DE_LESS_THAN       &kp DE_DEGREE
 //├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┬────────┐ ┌────────┬────────┼────────────────────┼─────────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
-//│               │     ^              │      &             │      |             │      %             │     @              │                                     │      €             │      )                  │    }               │    ]               │ >                  │   §                │
+//│               │     ^              │      &             │      |             │      %             │     @              │                                     │      €             │     )                   │    }               │    ]               │ >                  │   §                │
     &kp DE_TILDE       &GER_CARET         &kp DE_AMPERSAND     &kp DE_PIPE          &kp DE_PERCENT      &kp DE_AT_SIGN       &trans   &none      &none    &trans    &kp DE_EURO         &kp DE_RIGHT_PARENTHESIS &kp DE_RIGHT_BRACE   &kp DE_RIGHT_BRACKET &kp DE_GREATER_THAN    &kp DE_SECTION
 //└───────────────┴────────────────────┴────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┼────────┤ ├────────┼────────┼────────────────────┼─────────────────────────┼────────────────────┼────────────────────┴────────────────────┴────────────────────┘
                                                                &trans               &trans              &trans               &trans   &trans     &trans   &trans    &trans              &trans                   &trans
