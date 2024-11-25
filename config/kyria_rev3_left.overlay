@@ -32,4 +32,5 @@
                 effect = "solid";         /* Solid effect */
             };
         };
+    };
 };
