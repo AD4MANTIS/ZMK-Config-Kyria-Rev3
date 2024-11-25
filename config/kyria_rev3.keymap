@@ -271,7 +271,7 @@
                 , <&macro_tap RGB_UG(EFF)>
                 , <&macro_pause_for_release>
                 , <&macro_tap RGB_UG(EFR)>
-                , <&macro_tap DEFAULT_UG_COLOR>;
+                , <&macro_tap DEFAULT_UG_COLOR>
                 , <&macro_param_1to1>
                 , <&macro_release &lt LOWER MACRO_PLACEHOLDER>
         )
