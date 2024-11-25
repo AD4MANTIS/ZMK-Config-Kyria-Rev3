@@ -4,14 +4,14 @@
  * SPDX-License-Identifier: MIT
  */
 
-/*
- * German QWERTZ Layout
- */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/rgb.h>
+
+// https://github.com/joelspadin/zmk-locale-generator v1.4.0
+#include "keys_de.h"
+#include "keys_de_osx.h"
 
 // Uncomment this block if using RGB
 &led_strip {
@@ -20,16 +20,18 @@
     // chain-length = <25>; // Uncomment if using only per-key LEDs.
 };
 
+&sensors {
+    triggers-per-rotation = <36>;
+};
+
 // DIFFICULTY_THRESHOLD specifies your level of expertise with this keymap.
 // It's meant to help newcomers gradually work their way up to mastery.
 // You can disable this setting by omitting it or assigning a `0` zero.
-#define DIFFICULTY_THRESHOLD 200 // 500ms: easy -> 100ms: hard
+#define DIFFICULTY_THRESHOLD 250 // 500ms: easy -> 100ms: hard
 
 #if defined(DIFFICULTY_THRESHOLD) && DIFFICULTY_THRESHOLD > 0
 
-    #define HOMEY_HOLDING_TIME DIFFICULTY_THRESHOLD
-
-    #define INDEX_HOLDING_TIME DIFFICULTY_THRESHOLD
+    #define HOLDING_TIME DIFFICULTY_THRESHOLD
 
     #define PINKEY_DIFFICULTY_OFFSET (DIFFICULTY_THRESHOLD / 8)
 
@@ -43,81 +45,49 @@
 
 #endif
 
-/ {
-    macros {
-        GER_CARET: GER_CARET {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            
-            
-            bindings
-                = <&kp GRAVE>
-                , <&kp SPACE>;
-        };
+//////////////////////////////////////////////////////////////////////////
+//
+// Miryoku layers and home row mods (ported from my QMK endgame)
+// - https://sunaku.github.io/home-row-mods.html#porting-to-zmk
+// - https://github.com/urob/zmk-config#timeless-homerow-mods
+//
+//////////////////////////////////////////////////////////////////////////
 
-        GER_GRAVE: GER_GRAVE {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            
-            
-            bindings
-                = <&kp LS(EQUAL)>
-                , <&kp SPACE>;
-        };
-    };
-};
+// HOLDING_TYPE defines the flavor of ZMK hold-tap behavior to use
+// for the pinky, ring, and middle fingers (which are assigned to Super,
+// Alt, and Ctrl respectively in the Miryoku system) on home row keys.
+#define HOLDING_TYPE "tap-preferred"
+
+// HOLDING_TIME defines how long you need to hold (milliseconds)
+// home row mod keys in order to send their modifiers to the computer
+// (i.e. "register" them) for mod-click mouse usage (e.g. Ctrl-Click).
+#ifndef HOLDING_TIME
+    #define HOLDING_TIME 270 // TAPPING_TERM + ALLOW_CROSSOVER_AFTER
+#endif
+
+// STREAK_DECAY defines how long you need to wait (milliseconds)
+// after typing before you can use home row mods again. It prevents
+// unintended activation of home row mods when you're actively typing.
+#define STREAK_DECAY 250
+
+// REPEAT_DECAY defines how much time you have left (milliseconds)
+// after tapping a key to hold it again in order to make it auto-repeat.
+#define REPEAT_DECAY 150 // "tap then hold" for key auto-repeat
 
 // Home row mods
 / {
     behaviors {
-        //////////////////////////////////////////////////////////////////////////
-        //
-        // Miryoku layers and home row mods (ported from my QMK endgame)
-        // - https://sunaku.github.io/home-row-mods.html#porting-to-zmk
-        // - https://github.com/urob/zmk-config#timeless-homerow-mods
-        //
-        //////////////////////////////////////////////////////////////////////////
+        /*
+           key positions index for positional hold-tap
 
-        // HOMEY_HOLDING_TYPE defines the flavor of ZMK hold-tap behavior to use
-        // for the pinky, ring, and middle fingers (which are assigned to Super,
-        // Alt, and Ctrl respectively in the Miryoku system) on home row keys.
-        #define HOMEY_HOLDING_TYPE "tap-preferred"
-
-        // HOMEY_HOLDING_TIME defines how long you need to hold (milliseconds)
-        // home row mod keys in order to send their modifiers to the computer
-        // (i.e. "register" them) for mod-click mouse usage (e.g. Ctrl-Click).
-        #define HOMEY_HOLDING_TIME 270 // TAPPING_TERM + ALLOW_CROSSOVER_AFTER
-
-        // HOMEY_STREAK_DECAY defines how long you need to wait (milliseconds)
-        // after typing before you can use home row mods again.  It prevents
-        // unintended activation of home row mods when you're actively typing.
-        #define HOMEY_STREAK_DECAY 250
-
-        // HOMEY_REPEAT_DECAY defines how much time you have left (milliseconds)
-        // after tapping a key to hold it again in order to make it auto-repeat.
-        #define HOMEY_REPEAT_DECAY 300 // "tap then hold" for key auto-repeat
-
-        // Home row mods with per-finger configuration settings
-        #define RING_HOLDING_TYPE HOMEY_HOLDING_TYPE
-        #define RING_HOLDING_TIME HOMEY_HOLDING_TIME
-        #define RING_STREAK_DECAY HOMEY_STREAK_DECAY
-        #define RING_REPEAT_DECAY HOMEY_REPEAT_DECAY
-        #define MIDDY_HOLDING_TYPE HOMEY_HOLDING_TYPE
-        #define MIDDY_HOLDING_TIME HOMEY_HOLDING_TIME
-        #define MIDDY_STREAK_DECAY HOMEY_STREAK_DECAY
-        #define MIDDY_REPEAT_DECAY HOMEY_REPEAT_DECAY
-
-        //
-        // key positions index for positional hold-tap
-        //
-        // |-----------------------------|-----------------------------|
-        // | LEFT_HAND_KEYS              |             RIGHT_HAND_KEYS |
-        // |    0  1  2  3  4  5         |         6  7  8  9 10 11    |
-        // |    12 13 14 15 16 17        |        18 19 20 21 22 23    |
-        // |    24 25 26 27 28 29  30 31 | 32 33  34 35 36 37 38 39    |
-        // |              40 41 42 43 44 | 45 46 47 48 49              |
-        // |-----------------------------|-----------------------------|
-        //
+           |-----------------------------|-----------------------------|
+           | LEFT_HAND_KEYS              |             RIGHT_HAND_KEYS |
+           |    0  1  2  3  4  5         |         6  7  8  9 10 11    |
+           |    12 13 14 15 16 17        |        18 19 20 21 22 23    |
+           |    24 25 26 27 28 29  30 31 | 32 33  34 35 36 37 38 39    |
+           |              40 41 42 43 44 | 45 46 47 48 49              |
+           |-----------------------------|-----------------------------|
+        */
         #define LEFT_HAND_KEYS    \
             0  1  2  3  4  5      \
             12 13 14 15 16 17     \
@@ -130,58 +100,78 @@
                             30 31   32 33                 \
                    40 41 42 43 44   45 46 47 48 49
 
-        left_ring: homey_left_ring {
+        left_pinky: homey_left_pinky {
             compatible = "zmk,behavior-hold-tap";
-            flavor = RING_HOLDING_TYPE;
+            flavor = HOLDING_TYPE;
             hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
             hold-trigger-on-release; // wait for other home row mods
-            tapping-term-ms = <RING_HOLDING_TIME>;
-            quick-tap-ms = <RING_REPEAT_DECAY>;
-            require-prior-idle-ms = <RING_STREAK_DECAY>;
+            tapping-term-ms = <(HOLDING_TIME + PINKEY_DIFFICULTY_OFFSET)>;
+            quick-tap-ms = <REPEAT_DECAY>;
+            require-prior-idle-ms = <STREAK_DECAY>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        right_pinky: homey_right_pinky {
+            compatible = "zmk,behavior-hold-tap";
+            flavor = HOLDING_TYPE;
+            hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
+            hold-trigger-on-release; // wait for other home row mods
+            tapping-term-ms = <(HOLDING_TIME + PINKEY_DIFFICULTY_OFFSET)>;
+            quick-tap-ms = <REPEAT_DECAY>;
+            require-prior-idle-ms = <STREAK_DECAY>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        left_ring: homey_left_ring {
+            compatible = "zmk,behavior-hold-tap";
+            flavor = HOLDING_TYPE;
+            hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
+            hold-trigger-on-release; // wait for other home row mods
+            tapping-term-ms = <HOLDING_TIME>;
+            quick-tap-ms = <REPEAT_DECAY>;
+            require-prior-idle-ms = <STREAK_DECAY>;
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
         };
 
         right_ring: homey_right_ring {
             compatible = "zmk,behavior-hold-tap";
-            flavor = RING_HOLDING_TYPE;
+            flavor = HOLDING_TYPE;
             hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
             hold-trigger-on-release; // wait for other home row mods
-            tapping-term-ms = <RING_HOLDING_TIME>;
-            quick-tap-ms = <RING_REPEAT_DECAY>;
-            require-prior-idle-ms = <RING_STREAK_DECAY>;
+            tapping-term-ms = <HOLDING_TIME>;
+            quick-tap-ms = <REPEAT_DECAY>;
+            require-prior-idle-ms = <STREAK_DECAY>;
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
         };
 
         left_middy: homey_left_middy {
             compatible = "zmk,behavior-hold-tap";
-            flavor = MIDDY_HOLDING_TYPE;
+            flavor = HOLDING_TYPE;
             hold-trigger-key-positions = <RIGHT_HAND_KEYS THUMB_KEYS>;
             hold-trigger-on-release; // wait for other home row mods
-            tapping-term-ms = <MIDDY_HOLDING_TIME>;
-            quick-tap-ms = <MIDDY_REPEAT_DECAY>;
-            require-prior-idle-ms = <MIDDY_STREAK_DECAY>;
+            tapping-term-ms = <HOLDING_TIME>;
+            quick-tap-ms = <REPEAT_DECAY>;
+            require-prior-idle-ms = <STREAK_DECAY>;
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
         };
 
         right_middy: homey_right_middy {
             compatible = "zmk,behavior-hold-tap";
-            flavor = MIDDY_HOLDING_TYPE;
+            flavor = HOLDING_TYPE;
             hold-trigger-key-positions = <LEFT_HAND_KEYS THUMB_KEYS>;
             hold-trigger-on-release; // wait for other home row mods
-            tapping-term-ms = <MIDDY_HOLDING_TIME>;
-            quick-tap-ms = <MIDDY_REPEAT_DECAY>;
-            require-prior-idle-ms = <MIDDY_STREAK_DECAY>;
+            tapping-term-ms = <HOLDING_TIME>;
+            quick-tap-ms = <REPEAT_DECAY>;
+            require-prior-idle-ms = <STREAK_DECAY>;
             #binding-cells = <2>;
             bindings = <&kp>, <&kp>;
         };
-    };
-};
 
-/ {
-    behaviors {
         sk_shft: sticky_key_shift {
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
@@ -191,62 +181,235 @@
     };
 };
 
+#define HRM_L(mod_key1, mod_key2, mod_key3) &left_pinky mod_key1 &left_ring mod_key2 &left_middy mod_key3
+#define HRM_R(mod_key1, mod_key2, mod_key3) &right_pinky mod_key1 &right_ring mod_key2 &right_middy mod_key3
+
+#define RGB_UG(action) &rgb_ug RGB_##action
+
+#define DE_AE DE_A_UMLAUT
+#define DE_OE DE_O_UMLAUT
+#define DE_UE DE_U_UMLAUT
+
+/ {
+    macros {
+        // ^
+        ZMK_MACRO(GER_CARET,
+            bindings
+                = <&kp DE_CARET>
+                , <&kp SPACE>;
+        )
+
+        ZMK_MACRO(GER_OSX_CARET,
+            bindings
+                = <&kp DE_OSX_CARET>
+                , <&kp SPACE>;
+        )
+
+        // `
+        ZMK_MACRO(GER_GRAVE,
+            bindings
+                = <&kp DE_GRAVE>
+                , <&kp SPACE>;
+        )
+
+        // ´
+        ZMK_MACRO(GER_ACUTE,
+            bindings
+                = <&kp DE_ACUTE>
+                , <&kp SPACE>;
+        )
+
+        ZMK_MACRO(PREV_TAB,
+            bindings = <&kp LC(LS(TAB))>;
+        )
+
+        ZMK_MACRO(NEXT_TAB,
+            bindings = <&kp LC(TAB)>;
+        )
+
+        ZMK_MACRO(NAVIGATE_BACK,
+            bindings = <&kp LC(DE_MINUS)>;
+        )
+
+        ZMK_MACRO(NAVIGATE_FORWARD,
+            bindings = <&kp LC(LS(DE_MINUS))>;
+        )
+
+        TD_PLAY_SKIP: TD_PLAY_SKIP {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp C_PLAY_PAUSE>, <&kp C_NEXT>;
+        };
+    };
+};
+
+// Layers
+#define MAC 0
+#define WINDOWS 1
+#define LOWER 2
+#define MAC_SYMBOL 3
+#define WIN_SYMBOL 4
+#define FUNCTION 5
+
+/ {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <LOWER WIN_SYMBOL>;
+            then-layer = <FUNCTION>;
+        };
+        tri_layer_mac {
+            if-layers = <LOWER MAC_SYMBOL>;
+            then-layer = <FUNCTION>;
+        };
+    };
+};
+
 / {
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-            // -------------------------------------------------------------------------------------------------------------------------------------------
-            // |  Tab  |  Q  |  W  |  E   |   R   |   T    |                                                    |        Z        |  U   |   I   |  O  |  Ö  |   Ü  |
-            // |  ESC  |  A  |  S  |  D   |   F   |   G    |                                                    |        H        |  J   |   K   |  L  |  P  |   Ä  |
-            // | LGUI  |  Y  |  X  |  C   |   V   |   B    |      DEL      |       |    |       | LAYER 3 / DEL |        N        |  M   |   ,   |  .  |  ß  | CTRL |
-            //                     | LALT | LGUI  | LSHIFT | Layer 1 / RET | LCTRL |    | RCTRL |     BSPC      | LAYER 2 / SPACE | RGUI | LALT |
+        default_mac_layer {
+            /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+               |   Tab   |  Q  |  W  |  F   |   P   |   V    |                                                              |        Z        |   L   |   U   |  K  |  Ö  |   Ü   |
+               |   ESC   |  A  |  S  |  R   |   T   |   G    |                                                              |        M        |   N   |   E   |  I  |  O  |   Ä   |
+               | TOG Sym |  Y  |  X  |  C   |   D   |   B    |      DEL      | PLAY_PAUSE / NEXT |    | Encoder / C_MUTE | LAYER 3 / DEL |        J        |   H   |   ,   |  .  |  ß  | CMENU |
+                                     | LALT | LCTRL | LSHIFT | Layer 1 / RET |       LGUI        |    |   LGUI / K_APP   |   BACKSPACE   | LAYER 2 / SPACE | RCTRL | LALT  |
+            */
             bindings = <
-&kp TAB   &kp Q  &kp W              &kp E                &kp R     &kp T                                                        &kp Y        &kp U     &kp I                 &kp O               &kp SEMI   &kp LBKT
-&kp ESC   &kp A  &left_ring LALT S  &left_middy LCTRL D  &kp F     &kp G                                                        &kp H        &kp J     &right_middy RCTRL K  &right_ring RALT L  &kp P      &kp SQT
-&kp LGUI  &kp Z  &kp X              &kp C                &kp V     &kp B       &kp DEL    &none           &none      &lt 3 DEL  &kp N        &kp M     &kp COMMA             &kp DOT             &kp MINUS  &kp RCTRL
-                                    &kp LALT             &kp LGUI  &kp LSHIFT  &lt 1 RET  &kp LCTRL       &kp RCTRL  &kp BSPC   &lt 2 SPACE  &kp RGUI  &kp LALT
+//┌───────────────┬───────────────┬──────────┬──────────┬───────────────┬──────────┐                                                                           ┌────────────────────┬───────────────┬───────────────┬──────────┬──────────┬────────────────────┐
+//│     TAB       │         Q     │      W   │      F   │      P        │      V   │                                                                           │         Z          │         L     │        U      │      K   │    Ö     │         Ü          │
+    &kp TAB             &kp Q        &kp W      &kp F      &kp P           &kp V                                                                                     &kp DE_Z             &kp L          &kp U         &kp K    &kp DE_OE       &kp DE_UE
+//├───────────────┼───────────────┼──────────┼──────────┼───────────────┼──────────┤                                                                           ├────────────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
+//│     ESC       │       LGUI A  │  LALT S  │ LCTRL R  │               │      G   │                                                                           │         M          │               │       RCTRL E │  LALT I  │  LGUI O  │         Ä          │
+    &kp ESC         HRM_L(LGUI A  ,  LALT S  , LCTRL R  )  &lt LOWER T     &kp G                                                                                     &kp M             &lt LOWER N    HRM_R(RCTRL E ,  LALT I  ,  LGUI O  )     &kp DE_AE
+//├───────────────┼───────────────┼──────────┼──────────┼───────────────┼──────────┼────────────────────┬───────────────┐ ┌────────────────────┬───────────────┼────────────────────┼───────────────┼───────────────┼──────────┼──────────┼────────────────────┤
+//│               │       Y       │      X   │      C   │      D        │      B   │    DELETE          │  Play / Skip  │ │  Encoder / C_MUTE  │    DELETE     │         J          │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
+    &tog LOWER        &kp DE_Y       &kp X      &kp C      &kp D           &kp B        &kp DEL           &TD_PLAY_SKIP         &kp C_MUTE          &kp DEL          &kp J                &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
+//└───────────────┴───────────────┴──────────┼──────────┼───────────────┼──────────┼────────────────────┼───────────────┤ ├────────────────────┼───────────────┼────────────────────┼───────────────┼───────────────┼──────────┴──────────┴────────────────────┘
+//                                           │     LALT │      LCTRL    │    LSHIFT│ Layer Lower / RET  │     LGUI      │ │     LGUI / K_APP   │   BACKSPACE   │  LAYER 2 / SPACE   │       RCTRL   │       LALT    │
+                                               &kp LALT    &kp LCTRL     &kp LSHIFT    &lt LOWER RET      &kp LGUI            &mt LGUI K_APP       &kp BSPC     &lt MAC_SYMBOL SPACE    &kp RCTRL       &kp LALT
+//                                           └──────────┴───────────────┴──────────┴────────────────────┴───────────────┘ └────────────────────┴───────────────┴────────────────────┴───────────────┴───────────────┘
+            >;
+
+            sensor-bindings =
+                <&inc_dec_kp 0 0>,
+                <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        default_windows_layer {
+            bindings = <
+//┌───────────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                                             ┌────────────────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+       &trans        &trans     &trans     &trans     &trans     &trans                                                        &trans          &trans     &trans     &trans     &trans     &trans
+//├───────────────┬──────────┬──────────┬──────────┬──────────┬──────────┤                                             ├────────────────────┬──────────┬──────────┬──────────┬──────────┬──────────┤
+       &trans        &trans     &trans     &trans     &trans     &trans                                                        &trans          &trans     &trans     &trans     &trans     &trans
+//├───────────────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┬──────────┐ ┌──────────┬──────────┼────────────────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+       &trans        &trans     &trans     &trans     &trans     &trans     &trans     &trans       &trans     &trans          &trans          &trans     &trans     &trans     &trans     &trans
+//└───────────────┴──────────┴──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤ ├──────────┼──────────┼────────────────────┼──────────┼──────────┼──────────┴──────────┴──────────┘
+                                           &trans     &trans     &trans     &trans     &trans       &trans     &trans   &lt WIN_SYMBOL SPACE   &trans     &trans
+//                                      └──────────┴──────────┴──────────┴──────────┴──────────┘ └──────────┴──────────┴────────────────────┴──────────┴──────────┘
+            >;
+
+            sensor-bindings =
+                <&inc_dec_kp 0 0>,
+                <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+
+        lower_layer {
+            /* ------------------------------------------------------------------------------
+               | □ |      F1 - F5      |    |  F9  | F10  | F11 |  F12  |   PREV_TAB    | ■ |
+               | 0 | 1 | 2 | 3 | 4 | 5 |    | LEFT | DONW | UP  | RIGHT | NAVIGATE_BACK | NAVIGATE_FORWARD |
+               | □ | 6 | 7 | 8 | 9 | 0 |    | HOME | END  |  □  |   □   |   NEXT_TAB    | □ |
+            */
+            bindings = <
+//┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                                      ┌──────────┬──────────┬──────────┬──────────┬───────────────┬────────────────────┐
+//│          │      F1  │      F2  │      F3  │      F4  │      F5  │                                      │      F9  │     F10  │     F11  │     F12  │    PREV_TAB   │                    │
+     &trans     &kp F1     &kp F2     &kp F3     &kp F4     &kp F5                                            &kp F9    &kp F10    &kp F11    &kp F12      &PREV_TAB     &none
+//├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                                      ├──────────┼──────────┼──────────┼──────────┼───────────────┼────────────────────┤
+//│       0  │       1  │       2  │       3  │       4  │       5  │                                      │     LEFT │     DOWN │      UP  │    RIGHT │ NAVIGATE_BACK │  NAVIGATE_FORWARD  │
+     &kp N0     &kp N1     &kp N2     &kp N3     &kp N4     &kp N5                                           &kp LEFT   &kp DOWN    &kp UP   &kp RIGHT  &NAVIGATE_BACK   &NAVIGATE_FORWARD
+//├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼────────┬────────┐ ┌────────┬─────────┼──────────┼──────────┼──────────┼──────────┼───────────────┼────────────────────┤
+//│          │       6  │       7  │       8  │       9  │       0  │        │        │ │        │         │     HOME │     END  │          │          │    NEXT_TAB   │                    │
+     &trans     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0    &trans   &none      &none    &trans    &kp HOME   &kp END     &trans     &trans      &NEXT_TAB     &trans
+//└──────────┴──────────┴──────────┼──────────┼──────────┼──────────┼────────┼────────┤ ├────────┼─────────┼──────────┼──────────┼──────────┼──────────┴───────────────┴────────────────────┘
+                                      &trans     &trans     &trans    &trans   &trans     &trans   &kp DEL   &trans     &trans      &trans
+//                                 └──────────┴──────────┴──────────┴────────┴────────┘ └────────┴─────────┴──────────┴──────────┴──────────┘
+            >;
+
+            sensor-bindings =
+                <&inc_dec_kp 0 0>,
+                <&inc_dec_kp UP DOWN>;
+        };
+
+        mac_symbol_layer {
+            /* ------------------------------------------------------
+               | □ | * | + | - | = | # |    | \ | / | " | ' | ` | ´ |
+               | □ | _ | : | ; | ? | ! |    | $ | ( | { | [ | < | ° |
+               | ~ | ^ | & | | | % | @ |    | € | ) | } | ] | > | § |
+            */
+            bindings = <
+//┌───────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┐                                     ┌────────────────────┬──────────────────────────────┬─────────────────────────┬─────────────────────────┬────────────────────┬────────────────────┐
+//│               │     *              │      +             │      -             │      =             │     #              │                                     │      \             │       /                      │    "                    │    '                    │  `                 │   ´                │
+     &trans         &kp KP_MULTIPLY       &kp KP_PLUS          &kp KP_MINUS         &kp DE_OSX_EQUAL    &kp DE_OSX_HASH                                           &kp DE_OSX_BACKSLASH    &kp DE_OSX_SLASH            &kp DE_OSX_DOUBLE_QUOTES  &kp DE_OSX_APOSTROPHE      &GER_GRAVE            &GER_ACUTE
+//├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤                                     ├────────────────────┼──────────────────────────────┼─────────────────────────┼─────────────────────────┼────────────────────┼────────────────────┤
+//│      ~        │     _              │      :             │    ;               │     ?              │    !               │                                     │      $             │      (                       │    {                    │    [                    │ <                  │   °                │
+     &trans        &kp DE_OSX_UNDERSCORE  &kp DE_OSX_COLON   &kp DE_OSX_SEMICOLON  &kp DE_OSX_QUESTION &kp DE_OSX_EXCLAMATION                                       &kp DE_OSX_DOLLAR  &kp DE_OSX_LEFT_PARENTHESIS    &kp DE_OSX_LEFT_BRACE     &kp DE_OSX_LEFT_BRACKET   &kp DE_OSX_LESS_THAN  &kp DE_OSX_DEGREE
+//├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┬────────┐ ┌────────┬────────┼────────────────────┼──────────────────────────────┼─────────────────────────┼─────────────────────────┼────────────────────┼────────────────────┤
+//│               │    ^               │    &               │      |             │     %              │     @              │                                     │      €             │      )                       │    }                    │    ]                    │ >                  │   §                │
+  &kp DE_OSX_TILDE    &GER_OSX_CARET    &kp DE_OSX_AMPERSAND   &kp DE_OSX_PIPE     &kp DE_OSX_PERCENT   &kp DE_OSX_AT_SIGN   &trans   &none      &none    &trans    &kp DE_OSX_EURO    &kp DE_OSX_RIGHT_PARENTHESIS   &kp DE_OSX_RIGHT_BRACE    &kp DE_OSX_RIGHT_BRACKET  &kp DE_OSX_GREATER_THAN &kp DE_OSX_SECTION
+//└───────────────┴────────────────────┴────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┼────────┤ ├────────┼────────┼────────────────────┼──────────────────────────────┼─────────────────────────┼─────────────────────────┴────────────────────┴────────────────────┘
+                                                               &trans               &trans              &trans               &trans   &trans     &trans   &trans    &trans              &trans                        &trans
+//                                                          └────────────────────┴────────────────────┴────────────────────┴────────┴────────┘ └────────┴────────┴────────────────────┴──────────────────────────────┴─────────────────────────┘
             >;
         };
 
-        layer_Lower {
-            // ---------------------------------------------------------------
-            // |  | 1 | 2 | 3 | 4 | 5 |    |  F9  |  F10  | F11 | F12  |  |  |
-            // |  | 6 | 7 | 8 | 9 | 0 |    | LEFT | RIGHT | UP  | DOWN |  |  |
-            // |  |      F1 - F5      |    |      | HOME  | END |      |  |  |
+        windows_symbol_layer {
+            /* ------------------------------------------------------
+               | □ | * | + | - | = | # |    | \ | / | " | ' | ` | ´ |
+               | □ | _ | : | ; | ? | ! |    | $ | ( | { | [ | < | ° |
+               | ~ | ^ | & | | | % | @ |    | € | ) | } | ] | > | § |
+            */
             bindings = <
-&trans  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                         &kp F9   &kp F10  &kp F11    &kp F12    &trans  &trans
-&trans  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0                                         &kp LEFT &kp DOWN &kp UP     &kp RIGHT  &trans  &trans
-&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &trans  &none          &none   &trans  &trans   &kp HOME &kp END    &trans     &trans  &trans
-                        &trans  &trans  &trans  &trans  &trans         &trans  &trans  &trans   &trans   &trans
-            >;
-        };
-
-        layer_Symbol {
-            // ----------------------------------------------------
-            // |  | * | : | ; | ! | ? |    | { | } | " | ' | ` |  |
-            // |  | \ | / | + | - | = |    | ( | ) | < | > | _ |  |
-            // |  | ~ | ^ | & | | | % |    | [ | ] | @ | # | $ |  |
-            bindings = <
-&none    &kp KP_MULTIPLY   &kp LS(DOT)  &kp LS(COMMA)               &kp LS(N1)  &kp LS(MINUS)                                    &kp LC(LA(N7))  &kp LC(LA(N0))       &kp LS(N2)         &kp LS(BSLH)    &GER_GRAVE   &none
-&none  &kp LC(LA(MINUS))  &kp KP_SLASH       &kp RBKT                 &kp FSLH     &kp LS(N0)                                        &kp LS(N8)      &kp LS(N9)  &kp NON_US_BSLH  &kp LS(NON_US_BSLH)  &kp LS(FSLH)   &none
-&none   &kp LC(LA(RBKT))    &GER_CARET     &kp LS(N6)  &kp LC(LA(NON_US_BSLH))     &kp LS(N5)  &trans  &none     &none   &trans  &kp LC(LA(N8))  &kp LC(LA(N9))    &kp LC(LA(Q))             &kp BSLH    &kp LS(N4)   &none
-                                                &trans                  &trans         &trans  &trans  &trans    &trans  &trans          &trans          &trans            &trans
+//┌───────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┐                                     ┌────────────────────┬─────────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────┐
+//│               │     *              │      +             │      -             │      =             │     #              │                                     │      \             │     /                   │    "               │    '               │ `                  │   ´                │
+     &trans         &kp KP_MULTIPLY       &kp KP_PLUS          &kp KP_MINUS         &kp DE_EQUAL        &kp DE_HASH                                                 &kp DE_BACKSLASH    &kp DE_SLASH             &kp DE_DOUBLE_QUOTES &kp DE_APOSTROPHE    &GER_GRAVE             &GER_ACUTE
+//├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤                                     ├────────────────────┼─────────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
+//│      ~        │     _              │      :             │      ;             │      ?             │     !              │                                     │      $             │     (                   │    {               │    [               │ <                  │   °                │
+     &trans         &kp DE_UNDERSCORE     &kp DE_COLON         &kp DE_SEMICOLON     &kp DE_QUESTION     &kp DE_EXCLAMATION                                          &kp DE_DOLLAR       &kp DE_LEFT_PARENTHESIS  &kp DE_LEFT_BRACE    &kp DE_LEFT_BRACKET  &kp DE_LESS_THAN       &kp DE_DEGREE
+//├───────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┬────────┐ ┌────────┬────────┼────────────────────┼─────────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
+//│               │     ^              │      &             │      |             │      %             │     @              │                                     │      €             │     )                   │    }               │    ]               │ >                  │   §                │
+    &kp DE_TILDE       &GER_CARET         &kp DE_AMPERSAND     &kp DE_PIPE          &kp DE_PERCENT      &kp DE_AT_SIGN       &trans   &none      &none    &trans    &kp DE_EURO         &kp DE_RIGHT_PARENTHESIS &kp DE_RIGHT_BRACE   &kp DE_RIGHT_BRACKET &kp DE_GREATER_THAN    &kp DE_SECTION
+//└───────────────┴────────────────────┴────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────┼────────┤ ├────────┼────────┼────────────────────┼─────────────────────────┼────────────────────┼────────────────────┴────────────────────┴────────────────────┘
+                                                               &trans               &trans              &trans               &trans   &trans     &trans   &trans    &trans              &trans                   &trans
+//                                                          └────────────────────┴────────────────────┴────────────────────┴────────┴────────┘ └────────┴────────┴────────────────────┴─────────────────────────┴────────────────────┘
             >;
         };
 
         function_layer {
-            // ------------------------------------------------------------------------------------------------------------------------------------
-            // |BT_CLR|BTSEL0|BTSEL1|BTSEL2|BTSEL3|BTSEL4|                                          |RGB_TOG|RGB_BRI|RGB_SAI|RGB_HUI|RGB_SPI|RGB_EFF|
-            // |      |      |      |      |      |      |                                         |       |RGB_BRD|RGB_SAD|RGB_HUD|RGB_SPD|RGB_EFR|
-            // |      |      |      |      |      |      |      |      |      |      |      |      |       |       |       |       |       |       |
-            //                      |      |      |      |      |      |      |      |      |      |       |       |       |
+            /* ------------------------------------------------------------------------------------------------------
+               |BT_CLR|BTSEL0|BTSEL1|   BTSEL2   |BTSEL3|BTSEL4|    |RGB_TOG|RGB_BRI|RGB_SAI|RGB_HUI|RGB_SPI|RGB_EFF|
+               |      |      |C_PREV|C_PLAY_PAUSE|C_NEXT|      |    |       |RGB_BRD|RGB_SAD|RGB_HUD|RGB_SPD|RGB_EFR|
+               |      |      |      |            |      |      |    |       |       |       |       |       |       |
+            */
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                                     &rgb_ug RGB_TOG  &rgb_ug RGB_BRI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_SPI  &rgb_ug RGB_EFF
-&trans      &trans        &trans        &trans        &trans        &trans                                           &trans           &rgb_ug RGB_BRD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_SPD  &rgb_ug RGB_EFR
-&trans      &trans        &trans        &trans        &trans        &trans        &trans  &trans     &trans  &trans  &trans           &trans           &trans           &trans           &trans           &trans
-                                        &trans        &trans        &trans        &trans  &trans     &trans  &trans  &trans           &trans           &trans
+//┌──────────┬───────────────┬───────────────┬────────────────────┬───────────────┬───────────────┐                                     ┌───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────┐
+//│          │               │               │                    │               │               │                                     │ Underglow tog │Bright increase│  Sat increase │  Hue increase │Speed increase │Effect forward │
+   &bt BT_CLR  &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2         &bt BT_SEL 3    &bt BT_SEL 4                                           RGB_UG(TOG)     RGB_UG(BRI)     RGB_UG(SAI)     RGB_UG(HUI)     RGB_UG(SPI)     RGB_UG(EFF)
+//├──────────┼───────────────┼───────────────┼────────────────────┼───────────────┼───────────────┤                                     ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+//│          │               │       ⏮︎       │         ⏯︎          │     ⏭︎         │               │                                     │               │Bright decrease│  Sat decrease │  Hue decrease │Speed increase │Effect reverse │
+   &none       &none           &kp C_PREV      &kp C_PLAY_PAUSE     &kp C_NEXT      &none                                                  &tog WINDOWS    RGB_UG(BRD)     RGB_UG(SAD)     RGB_UG(HUD)     RGB_UG(SPD)     RGB_UG(EFR)
+//├──────────┼───────────────┼───────────────┼────────────────────┼───────────────┼───────────────┼────────┬────────┐ ┌────────┬────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+   &none       &none           &none           &none                &none           &none           &none    &none      &none    &none     &none           &none           &none           &none           &none           &none
+//└──────────┴───────────────┴───────────────┼────────────────────┼───────────────┼───────────────┼────────┼────────┤ ├────────┼────────┼───────────────┼───────────────┼───────────────┼───────────────┴───────────────┴───────────────┘
+                                               &none                &none           &none           &none    &none      &none    &none     &none           &none           &none
+//                                           └────────────────────┴───────────────┴───────────────┴────────┴────────┘ └────────┴────────┴───────────────┴───────────────┴───────────────┘
             >;
+
+            sensor-bindings =
+                <&inc_dec_kp 0 0>,
+                <&inc_dec_kp C_BRIGHTNESS_INC C_BRIGHTNESS_DEC>;
         };
     };
 };
+
