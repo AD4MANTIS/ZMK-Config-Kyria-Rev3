@@ -273,8 +273,8 @@
                 , <&macro_tap RGB_UG(EFR)>
                 , <&macro_tap DEFAULT_UG_COLOR>
                 , <&macro_param_1to1>
-                , <&macro_release &lt LOWER MACRO_PLACEHOLDER>
-        )
+                , <&macro_release &lt LOWER MACRO_PLACEHOLDER>;
+        };
 
         TD_PLAY_SKIP: TD_PLAY_SKIP {
             compatible = "zmk,behavior-tap-dance";
