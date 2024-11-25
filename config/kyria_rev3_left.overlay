@@ -1,9 +1,35 @@
 / {
     led_strip {
-        compatible = "zmk,rgb-underglow";
+        compatible = "zmk,underglow";
         label = "UNDERGLOW";
         chain-length = <6>;
         color = <0x00 0xFF 0x00>; /* Green */
         effect = "solid";
     };
+
+    layer_state {
+        default_mac_layer {
+            underglow {
+                color = <0x00 0x00 0xFF>; /* Default: Blue */
+                effect = "breathe";      /* Default effect */
+            };
+        };
+
+        default_windows_layer {
+            underglow {
+                color = <0xFF 0x00 0x00>; /* Layer 1: Red */
+                effect = "solid";         /* Solid effect */
+            };
+        };
+
+        lower_layer {
+            underglow {
+                color = <0xFF 0x00 0x00>; /* Layer 1: Red */
+                effect = "solid";         /* Solid effect */
+            };
+            UNDERGLOW {
+                color = <0xFF 0x00 0x00>; /* Layer 1: Red */
+                effect = "solid";         /* Solid effect */
+            };
+        };
 };
