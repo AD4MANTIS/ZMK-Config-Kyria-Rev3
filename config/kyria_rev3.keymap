@@ -288,8 +288,8 @@
 //│               │       Y       │      X   │      C   │      D        │      B   │    DELETE    │    Play / Skip    │ │  Encoder / C_MUTE  │       DELETE       │         J          │         H     │       ,       │     .    │    ß     │     K_CONTEXT_MENU │
     &tog LOWER        &kp DE_Y       &kp X      &kp C      &kp D           &kp B        &kp DEL       &TD_PLAY_SKIP           &kp C_MUTE             &kp DEL            &kp J                &kp H         &kp COMMA     &kp DOT   &kp DE_SZ   &kp K_CONTEXT_MENU
 //└───────────────┴───────────────┴──────────┼──────────┼───────────────┼──────────┼──────────────┼───────────────────┤ ├────────────────────┼────────────────────┼────────────────────┼───────────────┼───────────────┼──────────┴──────────┴────────────────────┘
-//                                           │     LCTRL       LALT     │     LGUI │      LSHIFT  │ Layer Lower / RET │ │      BACKSPACE     │  LAYER 2 / SPACE   │         LGUI       │       LALT    │ RCTRL / K_APP │
-                                               &kp LCTRL   &kp LALT       &kp LGUI    &kp LSHIFT      &lt LOWER RET            &kp BSPC       &lt MAC_SYMBOL SPACE      &kp LGUI           &kp LALT     &mt RCTRL K_APP 
+//                                           │     LCTRL       LALT     │Layer Lower / RET│LSHIFT │        LGUI       │ │          LGUI      │  LAYER 2 / SPACE   │     BACKSPACE      │       LALT    │ RCTRL / K_APP │
+                                               &kp LCTRL   &kp LALT     &lt LOWER RET  &kp LSHIFT      &kp LGUI                &kp LGUI       &lt MAC_SYMBOL SPACE      &kp BSPC           &kp LALT     &mt RCTRL K_APP 
 //                                           └──────────┴───────────────┴──────────┴──────────────┴───────────────────┘ └────────────────────┴────────────────────┴────────────────────┴───────────────┴───────────────┘
             >;
 
