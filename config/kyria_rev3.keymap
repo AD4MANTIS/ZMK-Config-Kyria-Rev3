@@ -228,11 +228,11 @@
         )
 
         ZMK_MACRO(NAVIGATE_BACK,
-            bindings = <&kp LC(DE_MINUS)>;
+            bindings = <&kp LC(LEFT)>;
         )
 
         ZMK_MACRO(NAVIGATE_FORWARD,
-            bindings = <&kp LC(LS(DE_MINUS))>;
+            bindings = <&kp LC(RIGHT)>;
         )
 
         TD_PLAY_SKIP: TD_PLAY_SKIP {
