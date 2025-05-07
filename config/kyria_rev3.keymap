@@ -205,6 +205,13 @@
                 , <&kp SPACE>;
         )
 
+        // ~
+        ZMK_MACRO(GER_OSX_TILDE,
+            bindings
+                = <&kp DE_OSX_TILDE>
+                , <&kp SPACE>;
+        )
+
         // `
         ZMK_MACRO(GER_GRAVE,
             bindings
@@ -358,11 +365,11 @@
         mac_symbol_layer {
             bindings = <
 //┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┓                                     ┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┓
-       &trans        &kp KP_MULTIPLY       &kp KP_PLUS          &kp KP_MINUS         &kp DE_OSX_EQUAL    &kp DE_OSX_HASH                                           &kp DE_OSX_BACKSLASH    &kp DE_OSX_SLASH            &kp DE_OSX_DOUBLE_QUOTES   &kp DE_OSX_APOSTROPHE    &GER_GRAVE               &GER_ACUTE
+       &trans         &kp KP_MULTIPLY      &kp KP_PLUS          &kp KP_MINUS         &kp DE_OSX_EQUAL    &kp DE_OSX_HASH                                           &kp DE_OSX_BACKSLASH    &kp DE_OSX_SLASH            &kp DE_OSX_DOUBLE_QUOTES   &kp DE_OSX_APOSTROPHE    &GER_GRAVE               &GER_ACUTE
 //┣━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫                                     ┣━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
        &trans       &kp DE_OSX_UNDERSCORE  &kp DE_OSX_COLON   &kp DE_OSX_SEMICOLON &kp DE_OSX_QUESTION  &kp DE_OSX_EXCLAMATION                                      &kp DE_OSX_DOLLAR    &kp DE_OSX_LEFT_PARENTHESIS    &kp DE_OSX_LEFT_BRACE     &kp DE_OSX_LEFT_BRACKET  &kp DE_OSX_LESS_THAN     &kp DE_OSX_DEGREE
 //┣━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━┳━━━━━━━━┓ ┏━━━━━━━━┳━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━┫
-    &GER_OSX_CARET    &kp DE_OSX_TILDE   &kp DE_OSX_AMPERSAND   &kp DE_OSX_PIPE     &kp DE_OSX_PERCENT   &kp DE_OSX_AT_SIGN   &trans   &none      &none    &trans    &kp DE_OSX_EURO     &kp DE_OSX_RIGHT_PARENTHESIS   &kp DE_OSX_RIGHT_BRACE    &kp DE_OSX_RIGHT_BRACKET &kp DE_OSX_GREATER_THAN  &kp DE_OSX_SECTION
+    &GER_OSX_CARET     &GER_OSX_TILDE    &kp DE_OSX_AMPERSAND   &kp DE_OSX_PIPE     &kp DE_OSX_PERCENT   &kp DE_OSX_AT_SIGN   &trans   &none      &none    &trans    &kp DE_OSX_EURO     &kp DE_OSX_RIGHT_PARENTHESIS   &kp DE_OSX_RIGHT_BRACE    &kp DE_OSX_RIGHT_BRACKET &kp DE_OSX_GREATER_THAN  &kp DE_OSX_SECTION
 //┗━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━╋━━━━━━━━┫ ┣━━━━━━━━╋━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━┛
                                                                 &trans               &trans              &trans               &trans   &trans     &trans   &trans    &trans              &trans                         &trans
 //                                                           ┗━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━┻━━━━━━━━┛ ┗━━━━━━━━┻━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━┛
