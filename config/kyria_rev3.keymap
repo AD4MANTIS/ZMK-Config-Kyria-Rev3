@@ -172,6 +172,16 @@
             bindings = <&kp>, <&kp>;
         };
 
+        long_press: long_press {
+            compatible = "zmk,behavior-hold-tap";
+            flavor = "tap-preferred";
+            tapping-term-ms = <HOLDING_TIME>;
+            quick-tap-ms = <REPEAT_DECAY>;
+            // require-prior-idle-ms = <STREAK_DECAY>;
+            #binding-cells = <2>;
+            bindings = <&kp>, <&kp>;
+        };
+
         sk_shft: sticky_key_shift {
             compatible = "zmk,behavior-sticky-key";
             #binding-cells = <1>;
