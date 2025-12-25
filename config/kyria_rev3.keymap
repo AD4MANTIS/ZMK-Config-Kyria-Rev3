@@ -403,7 +403,7 @@
         ┃BT_CLR┃ BT 0 ┃ BT 1 ┃ BT 2 ┃ BT 3 ┃ BT 4 ┃       ┃RGB Toggle ┃Bright increase ┃Sat increase ┃Hue increase ┃Speed increase ┃Effect forward ┃
         ┃      ┃      ┃  ⏮   ┃  ⏯   ┃  ⏭   ┃      ┃       ┃Toggle Win ┃Bright decrease ┃Sat decrease ┃Hue decrease ┃Speed increase ┃Effect reverse ┃
         ┃      ┃      ┃      ┃      ┃      ┃      ┃       ┃Toggle Game┃                ┃             ┃             ┃               ┃               ┃
-        ┃      ┃      ┃      ┃      ┃      ┃      ┃       ┃           ┃                ┃             ┃             ┃               ┃               ┃
+        ┃      ┃      ┃      ┃      ┃      ┃      ┃       ┃           ┃                ┃             ┃             ┃               ┃ studio_unlock ┃
         ┗━━━━━━┻━━━━━━┻━━━━━━┻━━━━━━┻━━━━━━┻━━━━━━┛       ┗━━━━━━━━━━━┻━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━┻━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━┛
         */ 
         function_layer {
